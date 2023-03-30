@@ -20,4 +20,6 @@ productRouter.delete(
   productControllers.remove
 );
 
+productRouter.post('/', productControllers.paginate);
+
 export default productRouter;

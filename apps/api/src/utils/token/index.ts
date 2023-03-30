@@ -10,8 +10,12 @@ export const createToken = async (payload: object) => {
 };
 
 export const decodeToken = async (token: string) => {
-  const secret = decode(token);
-  log.info('token was decoded', token);
+  try {
+    const secret = decode(token);
+    log.info('token was decoded', token);
 
-  return secret;
+    return secret;
+  } catch (_error) {
+    return;
+  }
 };
