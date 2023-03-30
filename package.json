@@ -1,0 +1,37 @@
+{
+  "name": "pharma",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "build": "dotenv -- turbo run build",
+    "dev": "dotenv -- turbo run dev --parallel",
+    "lint": "dotenv -- turbo run lint",
+    "test": "dotenv -- turbo run test",
+    "commit": "git-cz",
+    "prepare": "husky install",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "dotenv-cli": "^7.1.0",
+    "husky": "^8.0.3",
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "packageManager": "yarn@3.5.0"
+}

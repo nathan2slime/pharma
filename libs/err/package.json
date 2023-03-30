@@ -1,0 +1,17 @@
+{
+  "name": "@phar/err",
+  "description": "Err",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "devDependencies": {
+    "@phar/i18n": "*",
+    "@phar/tsconfig": "*",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.3"
+  },
+  "packageManager": "yarn@3.5.0"
+}

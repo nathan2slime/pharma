@@ -1,0 +1,10 @@
+{
+  "extends": "@phar/tsconfig/api.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["./src/**/*.ts", "index.ts"]
+}
