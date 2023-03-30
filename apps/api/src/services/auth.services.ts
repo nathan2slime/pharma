@@ -19,7 +19,7 @@ export class AuthServices {
 
     log.start('starting email verification');
     const userAlreadyExists = await UserModel.findOne({ email });
-    if (!!userAlreadyExists) throw new AppError(727, this.lang);
+    if (!!userAlreadyExists) throw new AppError(727, this.lang).getError();
 
     log.complete('verified email');
     log.start('starting user creation');
@@ -51,7 +51,7 @@ export class AuthServices {
       log.complete('user found with id', userData._id);
       log.start('starting password verification');
       const isValidPassword = await bcrypt.compare(password, user.password);
-      if (!isValidPassword) throw new AppError(725, this.lang);
+      if (!isValidPassword) throw new AppError(725, this.lang).getError();
 
       const token = await createToken({ user: user._id });
 
@@ -60,19 +60,21 @@ export class AuthServices {
       return { user: { ...userData, password: undefined }, token };
     }
 
-    throw new AppError(721, this.lang);
+    throw new AppError(721, this.lang).getError();
   }
 
   async getUserByToken(token?: string) {
     log.start('searching for user by token');
     const sessionExpired = new AppError(113, this.lang);
+    const noAuthorized = new AppError(111, this.lang);
 
-    if (!token) throw sessionExpired;
+    if (!token) throw noAuthorized.getError();
 
     const tokenSecret = (await decodeToken(token)) as AuthJWTSecret;
-    const user = await UserModel.findById(tokenSecret.user);
+    if (!tokenSecret.user) throw sessionExpired.getError();
 
-    if (!user) throw sessionExpired;
+    const user = await UserModel.findById(tokenSecret.user);
+    if (!user) throw sessionExpired.getError();
 
     log.success('user found with id');
     return user;

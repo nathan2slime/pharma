@@ -7,7 +7,7 @@ import { AppError } from '@/utils/err';
 import { log } from '@/log';
 
 export class AuthMiddlewares {
-  async isAdmin(req: Request, _res: Response, next: NextFunction) {
+  async isAdmin(req: Request, res: Response, next: NextFunction) {
     try {
       const token = req.headers.authorization;
       const lang = req.headers['accept-language'] as AppI18nLang;
@@ -21,18 +21,18 @@ export class AuthMiddlewares {
 
       if (isAdmin) {
         req.body.admin = user._id;
-        
+
         log.success('authorized operation for user', user._id);
-        next();
+        return next();
       }
 
-      throw new AppError(111, lang);
+      throw new AppError(111, lang).getError();
     } catch (error) {
-      return next(error);
+      return res.json({error: true, message: error.message});
     }
   }
 
-  async isLogged(req: Request, _res: Response, next: NextFunction) {
+  async isLogged(req: Request, res: Response, next: NextFunction) {
     try {
       const token = req.headers.authorization;
       const lang = req.headers['accept-language'] as AppI18nLang;
@@ -46,9 +46,9 @@ export class AuthMiddlewares {
         next();
       }
 
-      throw new AppError(111, lang);
+      throw new AppError(111, lang).getError();
     } catch (error) {
-      return next(error);
+      return res.json({error: true, message: error.message});
     }
   }
 }

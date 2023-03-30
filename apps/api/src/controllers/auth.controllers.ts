@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { AppI18nLang } from '@phar/i18n';
 
 import { UserLogin } from '@/types/auth.types';
@@ -7,7 +7,7 @@ import { AuthServices } from '@/services/auth.services';
 import { User } from '@/database/schemas/user.schema';
 
 export class AuthControllers {
-  async signup(req: Request, res: Response, next: NextFunction) {
+  async signup(req: Request, res: Response) {
     try {
       const { email, password, username } = req.body as User;
 
@@ -18,11 +18,11 @@ export class AuthControllers {
 
       return res.json(signup);
     } catch (error) {
-      return next(error);
+      return res.json({ error: true, message: error.message });
     }
   }
 
-  async login(req: Request, res: Response, next: NextFunction) {
+  async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body as UserLogin;
 
@@ -36,11 +36,11 @@ export class AuthControllers {
 
       return res.json(signup);
     } catch (error) {
-      return next(error);
+      return res.json({ error: true, message: error.message });
     }
   }
 
-  async authorization(req: Request, res: Response, next: NextFunction) {
+  async authorization(req: Request, res: Response) {
     try {
       const token = req.headers.authorization;
 
@@ -51,7 +51,7 @@ export class AuthControllers {
 
       return res.json(user);
     } catch (error) {
-      return next(error);
+      return res.json({ error: true, message: error.message });
     }
   }
 }

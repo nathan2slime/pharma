@@ -12,10 +12,10 @@ import { Product } from './product.schema';
 })
 export class User extends BaseModel {
   @prop({
-    type: Number,
-    default: () => parseInt(shortid.generate(), 35),
+    type: String,
+    default: () => shortid.generate().toUpperCase(),
   })
-  _id?: number;
+  _id?: string;
 
   @prop({ type: String, required: true })
   username!: string;

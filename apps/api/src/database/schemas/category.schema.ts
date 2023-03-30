@@ -8,10 +8,10 @@ import { BaseModel } from './base.schemas';
 })
 export class Category extends BaseModel {
   @prop({
-    type: Number,
-    default: () => parseInt(shortid.generate(), 35),
+    type: String,
+    default: () => shortid.generate().toUpperCase(),
   })
-  _id?: number;
+  _id?: string;
 
   @prop({ required: true, index: true })
   name!: string;
