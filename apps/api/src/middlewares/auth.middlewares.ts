@@ -20,7 +20,7 @@ export class AuthMiddlewares {
       const isAdmin = user.roles?.find(role => role == UserRole.ADMIN);
 
       if (isAdmin) {
-        req.body.admin = user._id;
+        req.body.adminId = user._id;
 
         log.success('authorized operation for user', user._id);
         return next();
@@ -42,8 +42,9 @@ export class AuthMiddlewares {
       const user = await authServices.getUserByToken(token);
 
       if (user) {
+        req.body.userId = user._id;
         log.success('authorized operation for logged in user', user.id);
-        next();
+        return next();
       }
 
       throw new AppError(111, lang).getError();

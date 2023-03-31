@@ -1,7 +1,7 @@
 import { AppI18nLang } from '@phar/i18n';
 
 import ProductModel, { Product } from '@/database/schemas/product.schema';
-import { ProductsPaginate } from '@/types/product.types';
+import { PriceSort, ProductsPaginate } from '@/types/product.types';
 import { AppError } from '@/utils/err';
 import { log } from '@/log';
 
@@ -20,6 +20,17 @@ export class ProductServices {
     return product;
   }
 
+  async describe(id: string) {
+    log.start('looking for product with id', id);
+
+    const product = await ProductModel.findById(id);
+    if (!product) throw new AppError(123, this.lang).getError();
+
+    log.success('product found with id', product?._id);
+
+    return product;
+  }
+
   async remove(id: string) {
     log.start('remove product operation with id', id);
     log.start('looking for product with id', id);
@@ -27,18 +38,24 @@ export class ProductServices {
     const product = await ProductModel.findById(id);
     if (product?.deleted_at) throw new AppError(123, this.lang).getError();
 
-    log.complete('product found with id', product?._id);
+    log.success('product found with id', product?._id);
     log.start('removing product', product?._id);
 
     return ProductModel.findByIdAndUpdate(id, { deleted_at: Date.now() })
-      .then(() => log.complete('product has been removed'))
+      .then(() => log.success('product has been removed'))
       .catch(err => new Error(err));
   }
 
   async filter(options: ProductsPaginate) {
-    const { filters, search } = options;
-    const queries: any = {};
+    const { filters, search, priceSort } = options;
 
+    const queries: Record<string, object | any> = {
+      deleted_at: { $exists: false },
+    };
+
+    log.start('searching products with the filter', options);
+
+    // Creating query for name and description search
     if (search) {
       queries['$and'] = [
         {
@@ -50,20 +67,35 @@ export class ProductServices {
       ];
     }
 
+    // Creating query for categories
     if (filters?.category) {
       queries['categories._id'] = filters.category;
     }
 
-    if (filters?.maxPrice) {
-      queries['price'] = { $lte: filters.maxPrice };
+    // Creating query for price ranges
+    const priceQuery: Record<string, number> = {};
+
+    if (filters?.minPrice || filters?.maxPrice) {
+      priceQuery['$gte'] = filters?.minPrice || 0;
+      priceQuery['$lte'] = filters?.maxPrice || Number.MAX_SAFE_INTEGER;
+      queries.price = priceQuery;
     }
 
-    queries['price'] = {
-      $gte: filters?.minPrice ? filters.minPrice : 0,
-      ...queries['price'],
-    };
+    // Creating a price sort query
+    const priceSortQuery: Record<string, number> = {};
 
-    const results = await ProductModel.paginate(queries, options);
+    if (priceSort === PriceSort.PRICE_ASC) {
+      priceSortQuery.price = 1;
+    } else if (priceSort === PriceSort.PRICE_DESC) {
+      priceSortQuery.price = -1;
+    }
+
+    const results = await ProductModel.paginate(queries, {
+      ...options,
+      sort: priceSortQuery,
+    });
+
+    log.success(results.totalDocs + ' products found');
 
     return results;
   }

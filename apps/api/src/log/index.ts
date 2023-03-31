@@ -4,7 +4,7 @@ import { Signale, SignaleOptions } from 'signale';
 config();
 
 const options: SignaleOptions = {
-  disabled: false,
+  disabled: process.env.NODE_ENV == 'test',
   interactive: false,
   scope: process.env.NODE_ENV,
   config: {

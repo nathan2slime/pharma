@@ -6,9 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch",
-    "test": "jest"
-  },
+    "dev": "tsup --watch"  },
   "devDependencies": {
     "@phar/themes": "*",
     "@phar/tsconfig": "*",

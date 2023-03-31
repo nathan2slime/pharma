@@ -19,7 +19,7 @@ productRouter.delete(
   authMiddlewares.isAdmin,
   productControllers.remove
 );
-
+productRouter.get('/describe/:id', productControllers.describe);
 productRouter.post('/', productControllers.paginate);
 
 export default productRouter;
