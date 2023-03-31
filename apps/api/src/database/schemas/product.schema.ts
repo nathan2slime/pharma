@@ -1,10 +1,9 @@
-import { PaginateMethod } from '@/types';
+import { PaginateMethod } from '@/types/paginate.types';
 import { prop, getModelForClass, pre, plugin } from '@typegoose/typegoose';
 import paginate from 'mongoose-paginate-v2';
 import shortid from 'shortid';
 
 import { BaseModel } from './base.schemas';
-import { Category } from './category.schema';
 
 @pre<Product>('save', function () {
   this.searchTitle = this.title.toLowerCase();
@@ -30,8 +29,8 @@ export class Product extends BaseModel {
   @prop({ type: [String], required: true, default: [] })
   gallery!: string[];
 
-  @prop({ type: [Category], required: true, default: [] })
-  categories!: Category[];
+  @prop({ type: [String], required: true, default: [] })
+  categories!: String[];
 
   @prop({ type: Number, required: true })
   price!: number;

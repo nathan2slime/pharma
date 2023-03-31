@@ -21,7 +21,7 @@ export class AuthServices {
     const userAlreadyExists = await UserModel.findOne({ email });
     if (!!userAlreadyExists) throw new AppError(727, this.lang).getError();
 
-    log.complete('verified email');
+    log.success('verified email');
     log.start('starting user creation');
 
     await UserModel.create({

@@ -5,7 +5,6 @@ import bcrypt from 'bcrypt';
 import { UserRole } from '@/types/auth.types';
 
 import { BaseModel } from './base.schemas';
-import { Product } from './product.schema';
 
 @pre<User>('save', async function () {
   this.password = await bcrypt.hash(this.password, 10);
@@ -26,14 +25,14 @@ export class User extends BaseModel {
   @prop({ type: String, required: true, select: false })
   password!: string;
 
-  @prop({ type: [Product], default: [] })
-  favorites?: Product[];
+  @prop({ type: [String], default: [] })
+  favorites?: String[];
 
-  @prop({ type: [Product], default: [] })
-  saved?: Product[];
+  @prop({ type: [String], default: [] })
+  saved?: String[];
 
-  @prop({ type: [Product], default: [] })
-  cart?: Product[];
+  @prop({ type: [String], default: [] })
+  cart?: String[];
 
   @prop({
     enum: UserRole,

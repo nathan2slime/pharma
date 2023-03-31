@@ -7,11 +7,31 @@ import { ProductsPaginate } from '@/types/product.types';
 
 export class ProductControllers {
   async paginate(req: Request, res: Response) {
-    const { filters, limit, page , search} = req.body as ProductsPaginate;
+    const { filters, limit, page, search, priceSort } =
+      req.body as ProductsPaginate;
 
     try {
       const productServices = new ProductServices();
-      const products = await productServices.filter({ filters, limit, page, search });
+      const products = await productServices.filter({
+        filters,
+        limit,
+        page,
+        search,
+        priceSort,
+      });
+
+      return res.json(products);
+    } catch (error) {
+      return res.json({ error: true, message: error.message });
+    }
+  }
+
+  async describe(req: Request, res: Response) {
+    const { id } = req.params;
+
+    try {
+      const productServices = new ProductServices();
+      const products = await productServices.describe(id);
 
       return res.json(products);
     } catch (error) {
@@ -36,7 +56,7 @@ export class ProductControllers {
           price,
           thumb,
         },
-        req.body.admin
+        req.body.adminId
       );
 
       return res.json(product);
