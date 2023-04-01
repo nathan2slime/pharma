@@ -78,7 +78,7 @@ describe('product controllers', () => {
 
   describe('describe', () => {
     const id = '3123910';
-    const req = { params: { id } } as unknown as Request;
+    const req = {..._req, params: { id } } as unknown as Request;
 
     it('should call describe product service with correct parameters', async () => {
       await productControllers.describe(req, _res);
