@@ -1,23 +1,27 @@
-import React from 'react';
-
 import { PharThemeProvider } from '@phar/core';
-import themes from '@phar/themes';
+import { themes } from '@phar/themes';
 
-import './styles/global.css';
+import './styles/global.scss';
 
-export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
-  controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
+/** @type { import('@storybook/react').Preview } */
+const preview = {
+  parameters: {
+    actions: { argTypesRegex: '^on[A-Z].*' },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/,
+      },
     },
   },
 };
 
+export default preview;
+
+/** @type { import('@storybook/react').Decorator } */
 export const decorators = [
   Story => (
-    <PharThemeProvider theme={themes.dark}>
+    <PharThemeProvider theme={themes.light}>
       <Story />
     </PharThemeProvider>
   ),

@@ -1,5 +1,5 @@
 {
   "extends": "@phar/tsconfig/react-library.json",
-  "include": ["./stories/**/*.tsx"],
+  "include": ["stories/**/*.tsx"],
   "exclude": ["dist", "build", "node_modules"]
 }

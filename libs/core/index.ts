@@ -1,3 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 
-export const TarThemeProvider = ThemeProvider;
+export * from './src/components/button';
+export * from './src/components/button/model';
+
+export const PharThemeProvider = ThemeProvider;
