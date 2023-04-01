@@ -11,7 +11,9 @@ export class ProductControllers {
       req.body as ProductsPaginate;
 
     try {
-      const productServices = new ProductServices();
+      const productServices = new ProductServices(
+        req.headers['accept-language'] as AppI18nLang
+      );
       const products = await productServices.filter({
         filters,
         limit,
@@ -30,10 +32,42 @@ export class ProductControllers {
     const { id } = req.params;
 
     try {
-      const productServices = new ProductServices();
+      const productServices = new ProductServices(
+        req.headers['accept-language'] as AppI18nLang
+      );
       const products = await productServices.describe(id);
 
       return res.json(products);
+    } catch (error) {
+      return res.json({ error: true, message: error.message });
+    }
+  }
+
+  async update(req: Request, res: Response) {
+    try {
+      const { title, categories, description, gallery, price, thumb } =
+        req.body as Product;
+
+      const { id } = req.params;
+
+      const productServices = new ProductServices(
+        req.headers['accept-language'] as AppI18nLang
+      );
+
+      const product = await productServices.update(
+        {
+          title,
+          categories,
+          description,
+          gallery,
+          price,
+          thumb,
+        },
+        id,
+        req.body.adminId
+      );
+
+      return res.json(product);
     } catch (error) {
       return res.json({ error: true, message: error.message });
     }
@@ -47,6 +81,7 @@ export class ProductControllers {
       const productServices = new ProductServices(
         req.headers['accept-language'] as AppI18nLang
       );
+
       const product = await productServices.create(
         {
           title,

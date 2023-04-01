@@ -15,7 +15,10 @@ export class AuthMiddlewares {
       log.start('checking authorization for token', token);
 
       const authServices = new AuthServices();
+
       const user = await authServices.getUserByToken(token);
+
+      if (!user) throw new AppError(111, lang).getError();
 
       const isAdmin = user.roles?.find(role => role == UserRole.ADMIN);
 
@@ -28,7 +31,7 @@ export class AuthMiddlewares {
 
       throw new AppError(111, lang).getError();
     } catch (error) {
-      return res.json({error: true, message: error.message});
+      return res.json({ error: true, message: error.message });
     }
   }
 
@@ -49,7 +52,7 @@ export class AuthMiddlewares {
 
       throw new AppError(111, lang).getError();
     } catch (error) {
-      return res.json({error: true, message: error.message});
+      return res.json({ error: true, message: error.message });
     }
   }
 }

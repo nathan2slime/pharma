@@ -12,6 +12,7 @@ export const pt: AppI18n = {
     languageNotAvailable: 'Idioma não disponível',
     timeoutError: 'Tempo excedido, tente novamente',
     notAuthorized: 'Não autorizado',
+    categoryNotFound: 'Categoria não foi encontrada',
   },
   password: 'Senha',
   email: 'E-mail',

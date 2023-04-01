@@ -12,6 +12,7 @@ export type AppI18n = {
     productNotFound: string;
     notAuthorized: string;
     timeoutError: string;
+    categoryNotFound: string;
   };
   password: string;
   email: string;

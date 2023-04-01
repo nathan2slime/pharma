@@ -5,8 +5,7 @@ export default {
     '@/(.*)': '<rootDir>/src/$1',
   },
   testEnvironment: 'node',
-  testMatch: ['**/tests/**/*.test.ts', '**/e2e/**/*.test.ts'],
-
+  testMatch: ['**/tests/**/*.test.ts', '**/e2e/**/*.spec.ts'],
   clearMocks: true,
   coverageProvider: 'v8',
   transform: {

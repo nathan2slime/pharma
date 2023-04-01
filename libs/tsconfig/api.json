@@ -24,5 +24,5 @@
     "resolveJsonModule": true,
     "baseUrl": "."
   },
-  "exclude": ["node_modules", "./tests/**/*ts"]
+  "exclude": ["node_modules"]
 }

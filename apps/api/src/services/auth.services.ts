@@ -8,7 +8,7 @@ import { AppError } from '@/utils/err';
 import { log } from '@/log';
 
 export class AuthServices {
-  lang: AppI18nLang;
+  private lang: AppI18nLang;
 
   constructor(lang: AppI18nLang = 'en') {
     this.lang = lang;
@@ -45,7 +45,7 @@ export class AuthServices {
     log.start('checking user existence');
     const user = await UserModel.findOne({ email }).select('+password');
 
-    if (user) {
+    if (!!user) {
       const userData = user.toObject();
 
       log.complete('user found with id', userData._id);
@@ -71,7 +71,7 @@ export class AuthServices {
     if (!token) throw noAuthorized.getError();
 
     const tokenSecret = (await decodeToken(token)) as AuthJWTSecret;
-    if (!tokenSecret.user) throw sessionExpired.getError();
+    if (!tokenSecret?.user) throw sessionExpired.getError();
 
     const user = await UserModel.findById(tokenSecret.user);
     if (!user) throw sessionExpired.getError();
