@@ -10,7 +10,7 @@ export default createReducer<AppI18nLang>(INITIAL, builder => {
   builder.addCase<string, AnyAction>(setLangAction.type, (__, action) => {
     const lang = action.payload;
 
-    setLocalStorageItem('lang', lang);
+    setLocalStorageItem(process.env.LANGUAGE_STORAGE_KEY || 'lang', lang);
 
     return lang;
   });

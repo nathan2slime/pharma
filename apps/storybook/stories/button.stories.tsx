@@ -1,12 +1,20 @@
-import { Story, Meta } from '@storybook/react/types-6-0';
+import type { Meta, StoryObj } from '@storybook/react';
 
-export default {
-  title: 'MyComponent',
-} as Meta;
+import { PharButton } from '@phar/core';
 
-const Template: Story<any> = args => <button {...args} />;
+const meta: Meta<typeof PharButton> = {
+  title: 'Button',
+  component: PharButton,
+};
 
-export const WithText = Template.bind({});
-WithText.args = {
-  text: 'Hello, world!',
+export default meta;
+
+type Story = StoryObj<typeof PharButton>;
+
+export const Default: Story = {
+  args: {
+    type: 'button',
+    children: 'Basic',
+    bold: 600,
+  },
 };

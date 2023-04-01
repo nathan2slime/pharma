@@ -2,16 +2,10 @@
   "name": "pharma",
   "version": "0.0.0",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "libs/*"
-    ],
-    "nohoist": [
-      "react-native",
-      "react-native/**"
-    ]
-  },
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "scripts": {
     "build": "dotenv -- turbo run build",
     "dev": "dotenv -- turbo run dev --parallel",
@@ -42,5 +36,14 @@
   "packageManager": "yarn@3.5.0",
   "dependencies": {
     "jest": "^29.5.0"
+  },
+  "resolutions": {
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "installConfig": {
+    "hoistingLimits": {}
   }
 }
