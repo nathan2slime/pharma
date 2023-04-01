@@ -10,6 +10,7 @@ export const getErrors = (lang: AppI18nLang = 'en'): AppErrors => {
     727: err.emailAlredyExists,
     719: err.emailAlredyExists,
     123: err.productNotFound,
+    632: err.categoryNotFound,
     726: err.errorUnknow,
     725: err.invalidCredentials,
     724: err.isNotAuthenticated,

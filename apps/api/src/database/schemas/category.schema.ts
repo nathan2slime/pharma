@@ -16,6 +16,9 @@ export class Category extends BaseModel {
   @prop({ required: true, index: true })
   name!: string;
 
+  @prop({ required: true, default: 'blue' })
+  color!: string;
+
   @prop({ index: true })
   searchName?: string;
 }

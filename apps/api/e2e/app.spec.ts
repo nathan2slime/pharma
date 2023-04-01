@@ -2,11 +2,7 @@ import request from 'supertest';
 
 import app from '../index';
 
-jest.mock('@phar/err', () => ({
-  getErrorMessage: (code: number, lang: 'en') => code + lang,
-}));
-
-describe('app integration testing', () => {
+describe('app integration', () => {
   it('should return status 200 when calling route /', async () => {
     const res = await request(app).get('/');
 

@@ -1,7 +1,8 @@
-import { PaginateMethod } from '@/types/paginate.types';
 import { prop, getModelForClass, pre, plugin } from '@typegoose/typegoose';
 import paginate from 'mongoose-paginate-v2';
 import shortid from 'shortid';
+
+import { PaginateMethod } from '@/types/paginate.types';
 
 import { BaseModel } from './base.schemas';
 

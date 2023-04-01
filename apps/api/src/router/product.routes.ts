@@ -14,6 +14,12 @@ productRouter.post(
   productControllers.create
 );
 
+productRouter.put(
+  '/update/:id',
+  authMiddlewares.isAdmin,
+  productControllers.update
+);
+
 productRouter.delete(
   '/remove/:id',
   authMiddlewares.isAdmin,

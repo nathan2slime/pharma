@@ -6,13 +6,13 @@ import { AppError } from '@/utils/err';
 import { log } from '@/log';
 
 export class ProductServices {
-  lang: AppI18nLang;
+  private lang: AppI18nLang;
 
   constructor(lang: AppI18nLang = 'en') {
     this.lang = lang;
   }
 
-  async create(data: Product, user: number) {
+  async create(data: Product, user?: number) {
     log.start('new product added by admin', user);
     const product = await ProductModel.create({ ...data });
 
@@ -20,11 +20,33 @@ export class ProductServices {
     return product;
   }
 
+  async update(data: Product, id: string, user?: number) {
+    log.start('update product by admin', user);
+    log.start('looking for product with id', id);
+
+    const product = await ProductModel.findById(id);
+
+    if (!product || product.deleted_at)
+      throw new AppError(123, this.lang).getError();
+
+    log.success('product found with id', product?._id);
+
+    const updatedProduct = await ProductModel.findByIdAndUpdate(
+      id,
+      { ...data },
+      { new: true }
+    );
+
+    log.success('product has been updated', updatedProduct?._id);
+    return updatedProduct;
+  }
+
   async describe(id: string) {
     log.start('looking for product with id', id);
 
     const product = await ProductModel.findById(id);
-    if (!product) throw new AppError(123, this.lang).getError();
+    if (!product || product.deleted_at)
+      throw new AppError(123, this.lang).getError();
 
     log.success('product found with id', product?._id);
 
@@ -36,6 +58,7 @@ export class ProductServices {
     log.start('looking for product with id', id);
 
     const product = await ProductModel.findById(id);
+
     if (product?.deleted_at) throw new AppError(123, this.lang).getError();
 
     log.success('product found with id', product?._id);
@@ -69,7 +92,7 @@ export class ProductServices {
 
     // Creating query for categories
     if (filters?.category) {
-      queries['categories._id'] = filters.category;
+      queries.categories = filters.category;
     }
 
     // Creating query for price ranges

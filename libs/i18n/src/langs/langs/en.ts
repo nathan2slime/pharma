@@ -12,6 +12,7 @@ export const en: AppI18n = {
     languageNotAvailable: 'Language not available',
     notAuthorized: 'Not authorized',
     timeoutError: 'Timeout, try again',
+    categoryNotFound: 'Category not found',
   },
   password: 'Password',
   email: 'Email',

@@ -7,5 +7,3 @@ export * from './src/types';
 
 export const getErrorMessage = (code: ErrorCode, lang: AppI18nLang = 'en') =>
   getErrors(lang)[code];
-
-
