@@ -13,14 +13,10 @@ export const InputStyled = styled.div`
     height: 40px;
     transition: all 0.14s;
     border-radius: 8px;
-    border: 2px solid ${({ theme }) => theme.borderColorUp};
+    border: 1px solid ${({ theme }) => theme.borderColorUp};
     padding: 8px 10px;
     outline: none;
     font-size: 0.875rem;
-
-    &:focus {
-      border-color: ${({ theme }) => theme.primaryColorUp};
-    }
   }
 
   input,
@@ -56,7 +52,16 @@ export const InputStyled = styled.div`
 
   &.solid {
     input {
-      background: ${({ theme }) => theme.foregroundColorDown};
+      background: ${({ theme }) => theme.inputBackgroundColorDown};
+      border-color: transparent;
+
+      &:focus {
+        background: ${({ theme }) => theme.inputBackgroundColorUp};
+      }
     }
+  }
+
+  input:focus {
+    border-color: ${({ theme }) => theme.primaryColorUp};
   }
 `;

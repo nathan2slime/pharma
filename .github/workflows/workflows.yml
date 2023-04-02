@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [master]
 
+env:
+  NEXT_PUBLIC_API_URL: ${{ secrets.API_URL }}
+
 jobs:
   build:
     runs-on: ubuntu-latest

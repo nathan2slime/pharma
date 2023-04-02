@@ -24,6 +24,8 @@ export const en = {
   username: 'Username',
   signupNow: 'Register now',
   welcomeBack: 'Welcome back',
+  dontHaveAnAccount: "I don't have an account",
+  alreadyHaveAnAccount: 'I already have an account',
   login: 'Login',
   form: {
     email: 'Enter a valid email address',

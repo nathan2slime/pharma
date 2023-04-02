@@ -9,12 +9,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { AppState } from '@/store';
 
-import { AuthProps } from './model';
+import { AuthProps, AuthFormFields } from './model';
 import { AuthStyled } from './styles';
 
 import pharm from '@/assets/pharm.svg';
 
-export const Auth = ({ type }: AuthProps) => {
+export const Auth = ({ type, onAuth }: AuthProps) => {
   const { lang } = useSelector((state: AppState) => state);
 
   const i18n = langs[lang];
@@ -42,6 +42,12 @@ export const Auth = ({ type }: AuthProps) => {
   });
 
   const form = watch();
+
+  const onSubmit = async () => {
+    const res = await trigger();
+
+    if (res) onAuth(form as AuthFormFields);
+  };
 
   return (
     <AuthStyled>
@@ -99,10 +105,17 @@ export const Auth = ({ type }: AuthProps) => {
           block
           bold={600}
           disabled={!isValid}
+          onClick={() => onSubmit()}
           aria-label={i18n[type]}
         >
           {i18n[type]}
         </PharButton>
+
+        <Link href={type == 'login' ? '/auth/signup' : '/auth/login'}>
+          {type == 'login' ? i18n.dontHaveAnAccount : i18n.alreadyHaveAnAccount}
+          
+          <i className="ri-arrow-right-s-line" />
+        </Link>
       </div>
     </AuthStyled>
   );

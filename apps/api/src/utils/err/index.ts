@@ -19,7 +19,9 @@ export class AppError {
   }
 
   getError() {
-    log.error(this.message, { code: this.code });
+    log.error(getErrorMessage(this.code, 'en'), {
+      code: this.code,
+    });
 
     return new Error(this.message);
   }

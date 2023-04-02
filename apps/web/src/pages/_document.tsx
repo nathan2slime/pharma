@@ -36,6 +36,10 @@ export default class MyDocument extends Document {
               href="https://fonts.googleapis.com/css2?family=Nunito&family=Ubuntu&display=swap"
               rel="stylesheet"
             />
+            <link
+              href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css"
+              rel="stylesheet"
+            />
           </>
         ),
       };

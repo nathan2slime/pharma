@@ -1,33 +1,24 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { AppProps } from 'next/app';
-import { ThemeProvider } from 'styled-components';
-import { themes } from '@phar/themes';
-import { useDispatch } from 'react-redux';
-import { PharThemeProvider } from '@phar/core';
 
-import { withAppState } from '@/guards/state';
+import { withAppState } from '@/providers/state';
+import { Alert } from '@/components/alert';
+import { AppProvider } from '@/providers/app';
+
 import { GlobalStyle } from '@/global';
-import {
-  setDefultLangAction,
-} from '@/store/actions/lang.actions';
+import { AuthProvider } from '@/providers/auth';
 
 const App: FC<AppProps> = ({ Component, ...props }) => {
-  const dispatch = useDispatch();
-
-  const theme = themes.light;
-
-  useEffect(() => {
-    dispatch(setDefultLangAction());
-  }, []);
-
   return (
-    <PharThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <Component {...props} />
+    <AppProvider>
+      <AuthProvider>
+        <Component {...props.pageProps} />
+
+        <Alert />
 
         <GlobalStyle />
-      </ThemeProvider>
-    </PharThemeProvider>
+      </AuthProvider>
+    </AppProvider>
   );
 };
 
