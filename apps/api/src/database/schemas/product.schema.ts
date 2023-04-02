@@ -36,10 +36,10 @@ export class Product extends BaseModel {
   @prop({ type: Number, required: true })
   price!: number;
 
-  @prop({ type: String, index: true })
+  @prop({ type: String, index: true, select: false })
   searchTitle?: string;
 
-  @prop({ type: String, index: true })
+  @prop({ type: String, index: true, select: false })
   searchDescription?: string;
 
   static paginate: PaginateMethod<Product>;

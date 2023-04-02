@@ -10,13 +10,22 @@ import { createWrapper } from 'next-redux-wrapper';
 import { AppI18nLang } from '@phar/i18n';
 
 import langReducer from './reducers/lang.reducer';
+import alertReducer from './reducers/alert.reducer';
+import userReducer from './reducers/user.reducer';
+
+import { AlertState } from '@/types/alert.types';
+import { UserState } from '@/types/auth.types';
 
 export type AppState = {
   lang: AppI18nLang;
+  alert: AlertState;
+  user: UserState;
 };
 
 const reducer = combineReducers<AppState>({
   lang: langReducer,
+  alert: alertReducer,
+  user: userReducer,
 });
 
 const makeStore = () =>

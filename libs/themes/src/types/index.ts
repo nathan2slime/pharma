@@ -14,11 +14,13 @@ export type Theme = {
   warningColorUp?: string;
   warningColorDown?: string;
   dangerColorUp?: string;
-  foregroundColorDown?: string,
-  foregroundColorUp?: string,
+  foregroundColorDown?: string;
+  foregroundColorUp?: string;
+  darkColorUp?: string;
+  darkColorDown?: string;
   secondaryFontFamily?: string;
   secondaryColorUp?: string;
-  secondaryColorDown?: string; 
+  secondaryColorDown?: string;
   primaryColorDown?: string;
   dangerColorDown?: string;
   backgroundColorDown?: string;

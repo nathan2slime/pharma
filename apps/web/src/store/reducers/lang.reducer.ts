@@ -3,7 +3,7 @@ import { AppI18nLang } from '@phar/i18n';
 
 import { getLocalStorageItem, setLocalStorageItem } from '@/utils/funcs';
 import {
-  setDefultLangAction,
+  setDefaultLangAction,
   setLangAction,
 } from '@/store/actions/lang.actions';
 
@@ -22,7 +22,7 @@ export default createReducer<AppI18nLang>(INITIAL, builder => {
 
       return lang;
     })
-    .addCase<string, AnyAction>(setDefultLangAction.type, (state, __) => {
+    .addCase<string, AnyAction>(setDefaultLangAction.type, (state, __) => {
       const langLocal = getLocalStorageItem(
         process.env.NEXT_PUBLIC_LANGUAGE_STORAGE_KEY || 'lang'
       ) as unknown as string;

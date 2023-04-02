@@ -18,7 +18,7 @@ const meta: Meta<typeof PharInput> = {
       description: 'Defines whether the input occupies all available space',
       type: 'boolean',
     },
-   
+
     error: {
       defaultValue: false,
       type: 'boolean',

@@ -13,7 +13,7 @@ export class Category extends BaseModel {
   })
   _id?: string;
 
-  @prop({ type:String, required: true, index: true })
+  @prop({ type: String, required: true, index: true })
   name!: string;
 
   @prop({ type: String, required: true, default: 'blue' })

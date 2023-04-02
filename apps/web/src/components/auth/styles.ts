@@ -68,6 +68,37 @@ export const AuthStyled = styled.div`
       }
     }
 
+    > a {
+      font-family: ${({ theme }) => theme.primaryFontFamily};
+      font-size: 0.875rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2px;
+      text-decoration: none;
+      padding: 3px 0px;
+      border-bottom: 1px solid transparent;
+      color: ${({ theme }) => theme.textColorDown};
+
+      &,
+      i {
+        transition: all 0.3s;
+      }
+
+      i {
+        font-size: 1rem;
+      }
+
+      &:hover {
+        &,
+        i {
+          color: ${({ theme }) => theme.primaryColorUp};
+        }
+
+        border-color: ${({ theme }) => theme.primaryColorUp};
+      }
+    }
+
     ${media.lessThan('sm')`
       max-width: 100%;
       height: 100%;

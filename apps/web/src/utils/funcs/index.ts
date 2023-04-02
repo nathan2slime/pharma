@@ -1,14 +1,23 @@
+import { PharColor } from '@phar/core';
+
 export const withWindow = (callback: () => void) =>
   typeof window != 'undefined' && callback();
 
 export const getLocalStorageItem = (item: string) =>
-  withWindow(() => localStorage.getItem(item) || '');
+  withWindow(() => localStorage.getItem(item)) || '';
 
 export const setLocalStorageItem = (item: string, value: string) =>
   withWindow(() => localStorage.setItem(item, value));
 
 export const dispatchCustomEvent = <T>(
   name: string,
-  target: Document | Window = document,
-  detail: T
+  detail: T,
+  target: Document | Window = document
 ) => target.dispatchEvent(new CustomEvent(name, { detail }));
+
+export const showAlert = (message: string, color: PharColor) =>
+  dispatchCustomEvent('pharAlert', {
+    message,
+    color,
+    open: true,
+  });
