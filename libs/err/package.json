@@ -1,5 +1,7 @@
 {
   "name": "@phar/err",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "description": "Err",
   "version": "0.0.1",
   "private": true,

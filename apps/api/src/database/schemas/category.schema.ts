@@ -13,13 +13,13 @@ export class Category extends BaseModel {
   })
   _id?: string;
 
-  @prop({ required: true, index: true })
+  @prop({ type:String, required: true, index: true })
   name!: string;
 
-  @prop({ required: true, default: 'blue' })
+  @prop({ type: String, required: true, default: 'blue' })
   color!: string;
 
-  @prop({ index: true })
+  @prop({ type: String, index: true })
   searchName?: string;
 }
 

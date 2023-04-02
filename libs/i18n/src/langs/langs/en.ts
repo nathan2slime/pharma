@@ -1,6 +1,4 @@
-import { AppI18n } from '../../types';
-
-export const en: AppI18n = {
+export const en = {
   err: {
     userNotFound: 'User not found',
     emailAlredyExists: 'Email alredy exists',
@@ -16,8 +14,16 @@ export const en: AppI18n = {
   },
   password: 'Password',
   email: 'Email',
+  back: 'Back',
+  signup: 'Signup',
+  insertPassword: 'Insert password',
+  insertEmail: 'Insert email',
   welcome: 'Welcome',
   loginNow: 'Login',
+  insertUsername: 'Insert username',
+  username: 'Username',
+  signupNow: 'Register now',
+  welcomeBack: 'Welcome back',
   login: 'Login',
   form: {
     email: 'Enter a valid email address',

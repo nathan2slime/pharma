@@ -1,7 +1,1 @@
-beforeAll(async () => {});
-
-afterAll(async () => {});
-
-afterEach(async () => {});
-
-export {};
+import '@testing-library/jest-dom';

@@ -14,7 +14,7 @@ config({
   path: '../../.env',
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 
@@ -39,6 +39,6 @@ app.get('/', (_req: Request, res: Response) =>
 );
 
 if (env != 'test')
-  app.listen(PORT, () => log.info('App running in PORT: ' + PORT));
+  app.listen(PORT, () => log.info('app running in PORT: ' + PORT));
 
 export default app;

@@ -1,6 +1,4 @@
-import { AppI18n } from '../../types';
-
-export const pt: AppI18n = {
+export const pt = {
   err: {
     userNotFound: 'Usuário não encontrado',
     emailAlredyExists: 'Email já existe',
@@ -15,9 +13,17 @@ export const pt: AppI18n = {
     categoryNotFound: 'Categoria não foi encontrada',
   },
   password: 'Senha',
+  signup: 'Cadastrar',
   email: 'E-mail',
   login: 'Entrar',
+  insertUsername: 'Inserir usuário',
+  username: 'Nome de usuário',
+  insertEmail: 'Inserir e-mail',
+  insertPassword: 'Inserir senha',
+  back: 'Voltar',
+  signupNow: 'Cadastre-se agora',
   welcome: 'Bem-vindo',
+  welcomeBack: 'Bem-vindo de volta',
   loginNow: 'Faça seu login agora',
   form: {
     required: 'Campo é obrigatório',
