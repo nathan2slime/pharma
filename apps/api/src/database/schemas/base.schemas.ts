@@ -1,12 +1,12 @@
 import { prop } from '@typegoose/typegoose';
 
 export abstract class BaseModel {
-  @prop({ default: Date.now })
+  @prop({ type: Date, default: Date.now })
   created_at?: Date;
 
-  @prop({ default: Date.now })
+  @prop({ type: Date, default: Date.now })
   updated_at?: Date;
 
-  @prop()
+  @prop({ type: Date })
   deleted_at?: Date;
 }

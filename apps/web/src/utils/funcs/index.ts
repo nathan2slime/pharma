@@ -2,7 +2,7 @@ export const withWindow = (callback: () => void) =>
   typeof window != 'undefined' && callback();
 
 export const getLocalStorageItem = (item: string) =>
-  withWindow(() => localStorage.getItem(item)) || '';
+  withWindow(() => localStorage.getItem(item) || '');
 
 export const setLocalStorageItem = (item: string, value: string) =>
   withWindow(() => localStorage.setItem(item, value));

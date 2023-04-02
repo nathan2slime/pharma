@@ -5,8 +5,7 @@
   "scripts": {
     "start": "npx serve dist/",
     "build": "storybook build -o dist/",
-    "dev": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "dev": "storybook dev -p 6006"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
@@ -15,6 +14,7 @@
     "@babel/preset-typescript": "^7.21.4",
     "@phar/core": "*",
     "@phar/themes": "*",
+    "@storybook/addon-docs": "next",
     "@storybook/addon-essentials": "^7.0.0",
     "@storybook/addon-interactions": "^7.0.0",
     "@storybook/addon-links": "^7.0.0",

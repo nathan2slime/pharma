@@ -6,7 +6,25 @@ export type Theme = {
   outlineColorUp?: string;
   outlineColorDown?: string;
   textColorUp?: string;
+  borderColorUp?: string;
+  borderColorDown?: string;
+  inputBackgroundColorUp?: string;
+  inputBackgroundColorDown?: string;
   textColorDown?: string;
+  warningColorUp?: string;
+  warningColorDown?: string;
+  dangerColorUp?: string;
+  foregroundColorDown?: string,
+  foregroundColorUp?: string,
+  secondaryFontFamily?: string;
+  secondaryColorUp?: string;
+  secondaryColorDown?: string; 
+  primaryColorDown?: string;
+  dangerColorDown?: string;
+  backgroundColorDown?: string;
+  backgroundColorUp?: string;
+  successColorUp?: string;
+  successColorDown?: string;
 };
 
 export type MultiTheme = {

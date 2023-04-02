@@ -33,7 +33,7 @@ export default class MyDocument extends Document {
               crossOrigin="anonymous"
             />
             <link
-              href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+              href="https://fonts.googleapis.com/css2?family=Nunito&family=Ubuntu&display=swap"
               rel="stylesheet"
             />
           </>
