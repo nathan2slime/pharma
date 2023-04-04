@@ -22,6 +22,14 @@ export class CategoryServices {
     return res;
   }
 
+  async getAll() {
+    log.start('looking for category with id');
+
+    const categories = await CategoryModel.find();
+
+    return categories;
+  }
+
   async describe(id: string) {
     log.start('looking for category with id', id);
 

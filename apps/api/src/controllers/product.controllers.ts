@@ -7,7 +7,7 @@ import { ProductsPaginate } from '@/types/product.types';
 
 export class ProductControllers {
   async paginate(req: Request, res: Response) {
-    const { filters, limit, page, search, priceSort } =
+    const { filters, limit, page, search, sort } =
       req.body as ProductsPaginate;
 
     try {
@@ -19,7 +19,7 @@ export class ProductControllers {
         limit,
         page,
         search,
-        priceSort,
+        sort,
       });
 
       return res.json(products);

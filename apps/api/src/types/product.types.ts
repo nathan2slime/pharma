@@ -8,11 +8,12 @@ export type ProductsPaginate = {
   page?: number;
   limit?: number;
   search?: string;
-  priceSort?: PriceSort;
+  sort?: ProductSort;
   filters?: ProductsFilter;
 };
 
-export enum PriceSort {
+export enum ProductSort {
   PRICE_DESC = 'PRICE_DESC',
   PRICE_ASC = 'PRICE_ASC',
+  NAME = 'NAME',
 }

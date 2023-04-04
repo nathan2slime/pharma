@@ -137,7 +137,7 @@ describe('product services', () => {
     });
 
     it('should sort products by price in ascending order', async () => {
-      const options = { priceSort: 'PRICE_ASC' };
+      const options = { sort: 'PRICE_ASC' };
       const results = await productServices.filter(options);
 
       expect(results.totalDocs).toBeGreaterThan(0);
@@ -145,7 +145,7 @@ describe('product services', () => {
     });
 
     it('should sort products by price in descending order', async () => {
-      const options = { priceSort: 'PRICE_ESC' };
+      const options = { sort: 'PRICE_ESC' };
       const results = await productServices.filter(options);
 
       expect(results.totalDocs).toBeGreaterThan(0);

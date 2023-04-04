@@ -1,4 +1,34 @@
 import { Theme } from '../../types';
 import { dark } from './dark';
 
-export const light: Theme = { ...dark };
+export const light: Theme = {
+  ...dark,
+  primaryColorUp: '#AA77FF',
+  primaryFontFamily: 'Nunito, sans-serif',
+  lightColorUp: '#FFFFFF',
+  outlineColorDown: '#62CDFF',
+  outlineColorUp: '#62CDFF',
+  inputBackgroundColorUp: '#FFFFFF',
+  inputBackgroundColorDown: '#EDF5FF',
+  borderColorDown: '#eaddff',
+  lightColorDown: '#F2F2F2',
+  primaryColorDown: '#AA77FF',
+  textColorDown: '#1C1F2D',
+  backgroundColorDown: '#DAF5FF',
+  foregroundColorDown: '#D3DFFF',
+  foregroundColorUp: '#f7f9ff',
+  darkColorUp: '#1C1F2D',
+  darkColorDown: '#353131',
+  backgroundColorUp: '#FFFFFF',
+  textColorUp: '#FFFFFF',
+  borderColorUp: '#eaddff',
+  warningColorUp: '#FFD700',
+  secondaryColorDown: '#2591c4',
+  secondaryColorUp: '#62CDFF',
+  warningColorDown: '#FFA500',
+  dangerColorUp: '#FF0000',
+  dangerColorDown: '#8B0000',
+  successColorUp: '#57C5B6',
+  successColorDown: '#3da091',
+  secondaryFontFamily: 'Ubuntu, sans-serif',
+};

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { AppState } from '@/store';
@@ -17,17 +17,15 @@ export const withAuth: Guard = Component => props => {
 
   if (pathname.includes('admin') && !roles.includes('ADMIN')) {
     push('/');
-  }
-
-  if (user.isLogged && isAuth) {
-    push('/');
-  }
-
-  if (!user.isLogged && !isAuth) {
+  } else if (!user.isLogged && !isAuth) {
     protecteds.forEach(route => route == pathname && push('/login'));
+  } else if (user.isLogged && isAuth) {
+    push('/404');
+  } else {
+    return <Component {...props.pageProps} />;
   }
 
-  return <Component {...props.pageProps} />;
+  return <div />;
 };
 
 export const withMe: Guard = Component => props => {

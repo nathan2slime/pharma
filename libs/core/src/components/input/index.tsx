@@ -10,6 +10,7 @@ export const PharInput = ({
   error,
   variant,
   block,
+  onKeyDown,
   helper,
   ...props
 }: InputProps) => (
@@ -25,6 +26,7 @@ export const PharInput = ({
     {label && <label>{label}</label>}
     <input
       {...props}
+      onKeyDown={e => onKeyDown && onKeyDown(e)}
       onChange={e => onChange && onChange((e.target as any).value)}
     />
     {helper && <span>{helper}</span>}

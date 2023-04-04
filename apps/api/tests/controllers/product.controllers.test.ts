@@ -54,7 +54,7 @@ describe('product controllers', () => {
         limit: 10,
         page: 1,
         search: '',
-        priceSort: 'PRICE_ASC',
+        sort: 'PRICE_ASC',
       },
     } as unknown as Request;
 

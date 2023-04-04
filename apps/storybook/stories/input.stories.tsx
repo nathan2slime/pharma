@@ -18,7 +18,6 @@ const meta: Meta<typeof PharInput> = {
       description: 'Defines whether the input occupies all available space',
       type: 'boolean',
     },
-
     error: {
       defaultValue: false,
       type: 'boolean',
@@ -44,15 +43,15 @@ const meta: Meta<typeof PharInput> = {
     className: {
       type: 'string',
       defaultValue: 'input',
-      description: 'Define a class for the component',
+      description: 'Defines a class for the component',
     },
     helper: {
-      description: 'Define a help text for the input',
+      description: 'Defines a help text for the input',
       type: 'string',
       defaultValue: '',
     },
     label: {
-      description: 'Define a label for the input',
+      description: 'Defines a label for the input',
       defaultValue: '',
       type: 'string',
     },

@@ -23,7 +23,7 @@ describe('category controllers', () => {
   };
 
   beforeEach(() => {
-    const controllers = ['remove', 'describe', 'create'];
+    const controllers = ['remove', 'describe', 'getAll', 'create'];
 
     controllers.forEach(async controller =>
       jest
@@ -62,6 +62,25 @@ describe('category controllers', () => {
 
       expect(CategoryServices.prototype.create).toHaveBeenCalledWith(data);
       expect(_res.json).toHaveBeenCalledWith(category);
+    });
+  });
+
+  describe('getAll', () => {
+    it('must call service to get all categories', async () => {
+      await categoryControllers.getAll(_req, _res);
+
+      expect(CategoryServices.prototype.getAll).toBeCalled();
+    });
+
+    it('should return the result of the getAll service', async () => {
+      jest
+        .spyOn(CategoryServices.prototype, 'getAll')
+        .mockImplementation(() => Promise.resolve(category));
+
+      await categoryControllers.getAll(_req, _res);
+
+      expect(CategoryServices.prototype.getAll).toHaveBeenCalled();
+      expect(_res.json).not.toBe(null);
     });
   });
 

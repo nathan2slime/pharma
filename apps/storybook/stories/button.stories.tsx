@@ -18,7 +18,7 @@ const meta: Meta<typeof PharButton> = {
     },
     className: {
       type: 'string',
-      defaultValue: 'input',
+      defaultValue: 'button',
       description: 'Define a class for the component',
     },
     onClick: {
@@ -32,7 +32,7 @@ const meta: Meta<typeof PharButton> = {
       options: ['solid', 'outline'],
       type: 'string',
       control: { type: 'select' },
-      description: 'Defines the input style',
+      description: 'Defines the button style',
     },
     disabled: {
       defaultValue: false,

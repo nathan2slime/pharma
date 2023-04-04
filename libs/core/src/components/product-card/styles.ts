@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 
 export const CardProductStyled = styled.div`
-  width: 250px;
+  width: 220px;
   height: 300px;
 
   background: ${({ theme }) => theme.foregroundColorUp};
   border-radius: 10px;
   cursor: pointer;
+  overflow: hidden;
+  transition: all 0.15s;
+
+  &.isLoading {
+    pointer-events: none;
+  }
 
   > div:first-child {
     height: 200px;
@@ -42,5 +48,9 @@ export const CardProductStyled = styled.div`
     font-size: 0.875rem;
     font-family: ${({ theme }) => theme.secondaryFontFamily};
     color: ${({ theme }) => theme.primaryColorUp};
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.primaryColorUp};
   }
 `;

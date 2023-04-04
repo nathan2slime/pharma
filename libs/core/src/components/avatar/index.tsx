@@ -6,9 +6,11 @@ import { AvatarStyled } from './styles';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 export const PharAvatar = ({ username, avatar, isLoading }: AvatarProps) => {
-  const styles = {
-    backgroundImage: `url(${avatar})`,
-  };
+  const styles = avatar
+    ? {
+        backgroundImage: `url(${avatar})`,
+      }
+    : {};
 
   return (
     <AvatarStyled>

@@ -11,6 +11,12 @@ export * from './src/components/avatar';
 export * from './src/components/avatar/model';
 export * from './src/components/product-card';
 export * from './src/components/product-card/model';
+export * from './src/components/badge';
+export * from './src/components/badge/model';
+export * from './src/components/search';
+export * from './src/components/search/model';
+export * from './src/components/select';
+export * from './src/components/select/model';
 
 export * from './src/types';
 

@@ -5,7 +5,6 @@ export const InputStyled = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-
   gap: 6px;
 
   input {
@@ -16,6 +15,7 @@ export const InputStyled = styled.div`
     border: 1px solid ${({ theme }) => theme.borderColorUp};
     padding: 8px 10px;
     outline: none;
+    background: ${({ theme }) => theme.backgroundColorUp};
     font-size: 0.875rem;
   }
 
@@ -40,16 +40,6 @@ export const InputStyled = styled.div`
     width: 100%;
   }
 
-  &.error {
-    input {
-      border-color: ${({ theme }) => theme.dangerColorUp};
-    }
-
-    span {
-      color: ${({ theme }) => theme.dangerColorUp};
-    }
-  }
-
   &.solid {
     input {
       background: ${({ theme }) => theme.inputBackgroundColorDown};
@@ -63,5 +53,15 @@ export const InputStyled = styled.div`
 
   input:focus {
     border-color: ${({ theme }) => theme.primaryColorUp};
+  }
+
+  &.error {
+    input {
+      border-color: ${({ theme }) => theme.dangerColorUp};
+    }
+
+    span {
+      color: ${({ theme }) => theme.dangerColorUp};
+    }
   }
 `;

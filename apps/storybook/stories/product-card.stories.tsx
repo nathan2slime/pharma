@@ -7,9 +7,9 @@ const meta: Meta<typeof PharProductCard> = {
   component: PharProductCard,
   argTypes: {
     price: {
-      defaultValue: 0,
-      description: 'Define the price of the product',
-      type: 'number',
+      defaultValue: '0',
+      description: 'Defines the price of the product',
+      type: 'string',
     },
     thumb: {
       type: 'string',
@@ -32,7 +32,7 @@ export const Default: Story = {
   args: {
     name: 'Product',
     isLoading: true,
-    price: 239.02,
+    price: '239.02',
     thumb:
       'https://a-static.mlcdn.com.br/280x210/jeep-eletrico-infantil-amarelo-bandeirante-jeep-wrang-com-controle-remoto-2-marchas/magazineluiza/230425600/aa95104dc9681055fd95bafafcddc3ca.jpg',
   },

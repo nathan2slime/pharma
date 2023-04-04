@@ -12,13 +12,16 @@ import { AppI18nLang } from '@phar/i18n';
 import langReducer from './reducers/lang.reducer';
 import alertReducer from './reducers/alert.reducer';
 import userReducer from './reducers/user.reducer';
+import categoryReducer from './reducers/category.reducer';
 
 import { AlertState } from '@/types/alert.types';
 import { UserState } from '@/types/auth.types';
+import { CategoryState } from '@/types/product.types';
 
 export type AppState = {
   lang: AppI18nLang;
   alert: AlertState;
+  categories: CategoryState;
   user: UserState;
 };
 
@@ -26,6 +29,7 @@ const reducer = combineReducers<AppState>({
   lang: langReducer,
   alert: alertReducer,
   user: userReducer,
+  categories: categoryReducer,
 });
 
 const makeStore = () =>

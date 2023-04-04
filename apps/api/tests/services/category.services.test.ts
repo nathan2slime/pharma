@@ -21,6 +21,14 @@ describe('category services', () => {
     });
   });
 
+  describe('getAll', () => {
+    it('should return an array of categories', async () => {
+      const categories = await categoryServices.getAll();
+
+      expect(categories).not.toBe(null);
+    });
+  });
+
   describe('remove', () => {
     let category: Category;
 
