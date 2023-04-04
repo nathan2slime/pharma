@@ -36,7 +36,7 @@ export class User extends BaseModel {
 
   @prop({
     enum: UserRole,
-    type: String,
+    type: [String],
     default: [UserRole.USER],
     required: true,
   })

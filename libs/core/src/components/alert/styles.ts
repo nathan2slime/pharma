@@ -5,8 +5,8 @@ export const AlertStyled = styled.div`
   padding: 8px 30px;
   border-radius: 8px;
   position: absolute;
-  top: 20px;
-  left: 20px;
+  bottom: 20px;
+  right: 20px;
   pointer-events: none;
   transition: all 0.3s;
   height: 40px;
@@ -14,6 +14,7 @@ export const AlertStyled = styled.div`
   font-size: 0.875rem;
   color: ${({ theme }) => theme.lightColorUp};
   font-weight: 600;
+  z-index: 11;
   opacity: 0;
 
   display: flex;
@@ -38,7 +39,7 @@ export const AlertStyled = styled.div`
   }
 
   &.warning {
-    color: ${({ theme }) => theme.darkColorUp};
+    color: ${({ theme }) => theme.textColorDown};
     background: ${({ theme }) => theme.warningColorUp};
   }
 `;

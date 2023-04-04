@@ -19,6 +19,8 @@ export * from './src/components/search';
 export * from './src/components/search/model';
 export * from './src/components/select';
 export * from './src/components/select/model';
+export * from './src/components/modal';
+export * from './src/components/modal/model';
 
 export * from './src/types';
 

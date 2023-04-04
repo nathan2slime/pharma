@@ -6,7 +6,7 @@ import { BadgeStyled } from './styles';
 export const PharBadge = ({ children, color, count }: BadgeProps) => {
   return (
     <BadgeStyled>
-      {(count || count == 0) && (
+      {(count || count != 0) && (
         <div className={classNames({ [color || 'info']: true })}>{count}</div>
       )}
 

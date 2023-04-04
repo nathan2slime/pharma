@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { langs } from '@phar/i18n';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 import { FilterBar } from '@/components/filter-bar';
 
@@ -16,6 +17,8 @@ import {
 } from '@/types/product.types';
 import { AppState } from '@/store';
 import { FilterOrder, FilterParams } from '@/components/filter-bar/model';
+
+import emptySearchIcon from '../../../assets/search.svg';
 
 const Index = ({ search, page, ...props }: IndexProps) => {
   const router = useRouter();
@@ -131,6 +134,13 @@ const Index = ({ search, page, ...props }: IndexProps) => {
                 <PharProductCard isLoading />
               ))}
         </div>
+
+        {products.docs.length == 0 && !isLoading && (
+          <div className="no_products_found">
+            <Image src={emptySearchIcon} alt={i18n.noProductsfound} />
+            <h4>{i18n.noProductsfound}</h4>
+          </div>
+        )}
       </div>
     </SearchStyled>
   );

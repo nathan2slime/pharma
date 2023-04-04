@@ -1,3 +1,4 @@
+import { media } from '@phar/themes';
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
@@ -18,13 +19,15 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
-  &::-webkit-scrollbar {
-    width: 4px;
-    border-radius: 5px;
-    background: ${({ theme }) => theme.foregroundColorDown};
-  }
+  ${media.greaterThan('md')`
+     &::-webkit-scrollbar {
+      width: 4px;
+      border-radius: 5px;
+      background: ${({ theme }) => theme.foregroundColorDown};
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.secondaryColorDown};
-  }
+    &::-webkit-scrollbar-thumb {
+      background: ${({ theme }) => theme.secondaryColorDown};
+    }
+  `}
 `;

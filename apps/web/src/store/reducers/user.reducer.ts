@@ -7,6 +7,8 @@ import {
   setUserIsAdminAction,
   setUserIsLoggedAction,
   setUserIsLoadingAction,
+  saveProductInUserAction,
+  addProductInCartUserAction,
 } from '../actions/user.actions';
 import { setLocalStorageItem } from '@/utils/funcs';
 
@@ -50,5 +52,47 @@ export default createReducer<UserState>(INITIAL, builder => {
         ...state,
         isLoading: action.payload,
       })
+    )
+    .addCase<string, AnyAction>(
+      saveProductInUserAction.type,
+      (state, action) => {
+        const user = state.data;
+        const product = action.payload;
+
+        if (user) {
+          let saved = [...user.saved];
+
+          if (saved) {
+            const index = saved.indexOf(product);
+
+            if (index === -1) {
+              saved = [...saved, product];
+            } else {
+              saved = saved.filter(sat => sat != product);
+            }
+
+            return { ...state, data: { ...user, saved } };
+          }
+        }
+
+        return state;
+      }
+    )
+    .addCase<string, AnyAction>(
+      addProductInCartUserAction.type,
+      (state, action) => {
+        const user = state.data;
+
+        if (user) {
+          const cart = [...user.cart, action.payload];
+
+          return {
+            ...state,
+            data: { ...user, cart: cart },
+          };
+        }
+
+        return state;
+      }
     );
 });
