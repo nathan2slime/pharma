@@ -1,6 +1,7 @@
 export type ProductCardProps = {
   name?: string;
-  price?: number;
+  onClick?: () => void;
+  price?: string;
   isLoading?: boolean;
   thumb?: string;
 };

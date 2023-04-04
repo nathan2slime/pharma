@@ -1,4 +1,6 @@
+import classNames from 'classnames';
 import Skeleton from 'react-loading-skeleton';
+
 import { ProductCardProps } from './model';
 import { CardProductStyled } from './styles';
 
@@ -6,12 +8,13 @@ export const PharProductCard = ({
   name,
   price,
   thumb,
+  onClick,
   isLoading,
 }: ProductCardProps) => {
-  const styles = { backgroundImage: `url(${thumb})` };
+  const styles = isLoading ? {} : { backgroundImage: `url(${thumb})` };
 
   return (
-    <CardProductStyled>
+    <CardProductStyled onClick={() => onClick && onClick()} className={classNames({ isLoading})}>
       <div style={styles}>
         {isLoading && <Skeleton width="100%" height="100%" />}
       </div>
@@ -22,10 +25,7 @@ export const PharProductCard = ({
           <Skeleton width="80px" height="20px" />
         ) : (
           <p>
-            {price?.toLocaleString('pt', {
-              style: 'currency',
-              currency: 'BRL',
-            })}
+            {price}
           </p>
         )}
       </div>

@@ -14,6 +14,7 @@ categoryRouter.post(
   categoryControllers.create
 );
 categoryRouter.get('/describe/:id', categoryControllers.describe);
+categoryRouter.get('/all', categoryControllers.getAll);
 categoryRouter.delete(
   '/remove/:id',
   authMiddlewares.isAdmin,

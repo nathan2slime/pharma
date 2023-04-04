@@ -17,8 +17,8 @@ const meta: Meta<typeof PharAlert> = {
     },
     className: {
       type: 'string',
-      defaultValue: 'input',
-      description: 'Define a class for the component',
+      defaultValue: 'alert',
+      description: 'Defines a class for the component',
     },
     color: {
       type: 'string',

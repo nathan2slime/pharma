@@ -19,16 +19,23 @@ export const Auth = ({ type, onAuth }: AuthProps) => {
 
   const i18n = langs[lang];
 
-  const defaultSchema = {
-    email: yup.string().required(i18n.form.required).email(i18n.form.email),
-    password: yup.string().required(i18n.form.required),
-  };
-
   const schemas = {
-    login: yup.object().shape(defaultSchema),
+    login: yup.object().shape({
+      email: yup.string().required(i18n.form.required).email(i18n.form.email),
+      password: yup.string().required(i18n.form.required),
+    }),
     signup: yup.object().shape({
-      ...defaultSchema,
-      username: yup.string().required(i18n.form.required),
+      email: yup.string().required(i18n.form.required).email(i18n.form.email),
+      password: yup
+        .string()
+        .required(i18n.form.required)
+        .min(8, i18n.mustBeAtLeastCharacter(8)),
+      username: yup
+        .string()
+        .required(i18n.form.required)
+        .min(6, i18n.mustBeAtLeastCharacter(6))
+        .max(14, i18n.maximumCharactersReaching)
+        .matches(/^[a-zA-Z0-9]+$/, i18n.invalidUsername),
     }),
   };
 
@@ -113,7 +120,7 @@ export const Auth = ({ type, onAuth }: AuthProps) => {
 
         <Link href={type == 'login' ? '/auth/signup' : '/auth/login'}>
           {type == 'login' ? i18n.dontHaveAnAccount : i18n.alreadyHaveAnAccount}
-          
+
           <i className="ri-arrow-right-s-line" />
         </Link>
       </div>

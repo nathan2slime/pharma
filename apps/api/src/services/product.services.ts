@@ -1,7 +1,7 @@
 import { AppI18nLang } from '@phar/i18n';
 
 import ProductModel, { Product } from '@/database/schemas/product.schema';
-import { PriceSort, ProductsPaginate } from '@/types/product.types';
+import { ProductSort, ProductsPaginate } from '@/types/product.types';
 import { AppError } from '@/utils/err';
 import { log } from '@/log';
 
@@ -70,7 +70,7 @@ export class ProductServices {
   }
 
   async filter(options: ProductsPaginate) {
-    const { filters, search, priceSort } = options;
+    const { filters, search, sort } = options;
 
     const queries: Record<string, object | any> = {
       deleted_at: { $exists: false },
@@ -78,7 +78,6 @@ export class ProductServices {
 
     log.start('searching products with the filter', options);
 
-    // Creating query for name and description search
     if (search) {
       queries['$and'] = [
         {
@@ -90,12 +89,10 @@ export class ProductServices {
       ];
     }
 
-    // Creating query for categories
     if (filters?.category) {
       queries.categories = filters.category;
     }
 
-    // Creating query for price ranges
     const priceQuery: Record<string, number> = {};
 
     if (filters?.minPrice || filters?.maxPrice) {
@@ -104,18 +101,19 @@ export class ProductServices {
       queries.price = priceQuery;
     }
 
-    // Creating a price sort query
-    const priceSortQuery: Record<string, number> = {};
+    const sortQuery: Record<string, number> = {};
 
-    if (priceSort === PriceSort.PRICE_ASC) {
-      priceSortQuery.price = 1;
-    } else if (priceSort === PriceSort.PRICE_DESC) {
-      priceSortQuery.price = -1;
+    if (sort === ProductSort.PRICE_ASC) {
+      sortQuery.price = 1;
+    } else if (sort === ProductSort.PRICE_DESC) {
+      sortQuery.price = -1;
+    } else if (sort == ProductSort.NAME) {
+      sortQuery.title = 1;
     }
 
     const results = await ProductModel.paginate(queries, {
       ...options,
-      sort: priceSortQuery,
+      sort: sortQuery,
     });
 
     log.success(results.totalDocs + ' products found');

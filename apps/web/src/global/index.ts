@@ -16,4 +16,15 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
     font-size: 100%;
   }
+
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 5px;
+    background: ${({ theme }) => theme.foregroundColorDown};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.secondaryColorDown};
+  }
 `;

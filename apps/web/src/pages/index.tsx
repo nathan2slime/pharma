@@ -1,20 +1,32 @@
 import { GetStaticProps } from 'next';
 import { PharProductCard } from '@phar/core';
+import { useRouter } from 'next/router';
 
-import { Navbar } from '@/components/navbar';
 import { IndexStyled } from '@/styles/index.styles';
 import { ProductServices } from '@/services/product.services';
 import { ProductFilterResponse } from '@/types/product.types';
 
 const Index = ({ products }: IndexProps) => {
+  const router = useRouter();
+
   return (
     <IndexStyled>
-      <Navbar />
-
-      <div>
-        {products.docs.map(({ _id, title, price, thumb }) => (
-          <PharProductCard key={_id} name={title} price={price} thumb={thumb} />
-        ))}
+      <div className="products">
+        <div>
+          {products &&
+            products.docs.map(({ _id, title, price, thumb }) => (
+              <PharProductCard
+                key={_id}
+                name={title}
+                onClick={() => router.push('/product/' + _id)}
+                price={price.toLocaleString('en', {
+                  style: 'currency',
+                  currency: 'USD',
+                })}
+                thumb={thumb}
+              />
+            ))}
+        </div>
       </div>
     </IndexStyled>
   );
@@ -30,15 +42,9 @@ export const getStaticProps: GetStaticProps = async () => {
   const productServices = new ProductServices('en');
   const res = await productServices.filter();
 
-  if (res) {
-    return {
-      props: {
-        products: res,
-      },
-    };
-  }
-
   return {
-    props: {},
+    props: {
+      products: res,
+    },
   };
 };

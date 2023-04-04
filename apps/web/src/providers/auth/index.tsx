@@ -13,6 +13,8 @@ import {
 import { getLocalStorageItem } from '@/utils/funcs';
 
 import { AuthProviderProps } from './model';
+import { ProductServices } from '@/services/product.services';
+import { setCategoryDataAction } from '@/store/actions/category.actions';
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const dispatch = useDispatch();
@@ -28,9 +30,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     );
 
     const userServices = new AuthServices(lang);
+    const productServices = new ProductServices(lang);
+
+    const categories = await productServices.fetchCategories();
+    if (categories) {
+      dispatch(setCategoryDataAction(categories));
+    }
 
     const user = await userServices.auth(token);
-
     if (user) {
       const isAdmin = user.roles.includes('ADMIN');
 

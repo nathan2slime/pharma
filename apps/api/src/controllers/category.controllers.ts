@@ -38,6 +38,20 @@ export class CategoryControllers {
     }
   }
 
+  async getAll(req: Request, res: Response) {
+    try {
+      const categoryServices: CategoryServices = new CategoryServices(
+        req.headers['accept-language'] as AppI18nLang
+      );
+
+      const categories = await categoryServices.getAll();
+
+      return res.json(categories);
+    } catch (error) {
+      return res.json({ error: true, message: error.message });
+    }
+  }
+
   async describe(req: Request, res: Response) {
     try {
       const { id } = req.params;

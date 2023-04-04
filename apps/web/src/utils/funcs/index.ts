@@ -16,8 +16,10 @@ export const dispatchCustomEvent = <T>(
 ) => target.dispatchEvent(new CustomEvent(name, { detail }));
 
 export const showAlert = (message: string, color: PharColor) =>
-  dispatchCustomEvent('pharAlert', {
-    message,
-    color,
-    open: true,
-  });
+  withWindow(() =>
+    dispatchCustomEvent('pharAlert', {
+      message,
+      color,
+      open: true,
+    })
+  );
