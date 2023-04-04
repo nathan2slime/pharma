@@ -1,3 +1,4 @@
+import { media } from '@phar/themes';
 import styled from 'styled-components';
 
 export const IndexStyled = styled.div`
@@ -11,7 +12,7 @@ export const IndexStyled = styled.div`
   align-items: center;
   overflow-y: auto;
   overflow-x: hidden;
-  background: ${({theme}) => theme.backgroundColorUp};
+  background: ${({ theme }) => theme.backgroundColorUp};
 
   .products {
     width: 100%;
@@ -31,6 +32,10 @@ export const IndexStyled = styled.div`
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       place-items: flex-start;
+
+      ${media.lessThan('sm')`
+        place-items: center;
+      `}
     }
   }
 `;

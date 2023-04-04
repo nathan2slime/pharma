@@ -36,9 +36,12 @@ export const pt = {
   lowestPrice: 'Menor preço',
   biggestPrice: 'Maior preço',
   category: 'Categoria',
+  addToCart: 'Adicionar ao carrinho',
   name: 'Nome',
+  noProductsfound: 'Nenhum produto encontrado',
   welcomeBack: 'Bem-vindo de volta',
   loginNow: 'Faça seu login agora',
+  addedInCart: 'Adicionado ao carrinho',
   form: {
     required: 'Esse campo é obrigatório',
     email: 'Digite um email válido',

@@ -12,3 +12,9 @@ export const setAuthTokenAction = createAction<string, string>('setAuthToken');
 export const setUserIsLoadingAction = createAction<boolean, string>(
   'setUserIsLoading'
 );
+export const saveProductInUserAction = createAction<string, string>(
+  'saveProductInUser'
+);
+export const addProductInCartUserAction = createAction<string, string>(
+  'addProductInCartUser'
+);

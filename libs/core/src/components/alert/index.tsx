@@ -17,7 +17,7 @@ export const PharAlert = ({
   useEffect(() => {
     timer && clearTimeout(timer);
 
-    timer = setTimeout(() => onClose && onClose(), 3000);
+    timer = setTimeout(() => onClose && onClose(), 1500);
   }, [open]);
 
   return (
