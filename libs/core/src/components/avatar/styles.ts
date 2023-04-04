@@ -20,10 +20,19 @@ export const AvatarStyled = styled.div`
     font-family: ${({ theme }) => theme.primaryFontFamily};
     font-size: 0.875rem;
     color: ${({ theme }) => theme.textColorDown};
-    width: 100px;
     text-transform: lowercase;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    &:last-child {
+      width: 100px;
+    }
+  }
+
+  &.isLoading {
+    span {
+      width: fit-content;
+    }
   }
 `;

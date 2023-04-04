@@ -1,9 +1,8 @@
 import Skeleton from 'react-loading-skeleton';
+import classNames from 'classnames';
 
 import { AvatarProps } from './model';
 import { AvatarStyled } from './styles';
-
-import 'react-loading-skeleton/dist/skeleton.css';
 
 export const PharAvatar = ({ username, avatar, isLoading }: AvatarProps) => {
   const styles = avatar
@@ -13,7 +12,7 @@ export const PharAvatar = ({ username, avatar, isLoading }: AvatarProps) => {
     : {};
 
   return (
-    <AvatarStyled>
+    <AvatarStyled className={classNames({ isLoading })}>
       {isLoading ? (
         <Skeleton circle width="40px" height="40px" />
       ) : (

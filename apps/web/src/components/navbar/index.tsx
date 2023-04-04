@@ -21,7 +21,6 @@ export const Navbar = () => {
     user: { isLogged, data, isLoading },
     lang,
   } = useSelector((state: AppState) => state);
-
   const i18n = langs[lang];
 
   const hidden = pathname.includes('auth') || pathname.includes('product');

@@ -1,6 +1,8 @@
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { ThemeProvider } from 'styled-components';
 
+import 'react-loading-skeleton/dist/skeleton.css';
+
 export * from './src/components/button';
 export * from './src/components/button/model';
 export * from './src/components/input';

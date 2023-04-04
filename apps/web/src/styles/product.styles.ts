@@ -103,7 +103,7 @@ export const ProductStyled = styled.div`
         margin-bottom: 20px;
 
 
-        .categories {
+        .category {
           width: fit-content;
           padding: 5px 10px;
           border-radius: 8px;
