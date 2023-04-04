@@ -10,6 +10,10 @@ export const ProductStyled = styled.div`
     display: flex;
   }
 
+  .loader {
+    width: 100%;
+  }
+
   .wrapper {
     width: 100vw;
     height: 100vh;
@@ -96,8 +100,10 @@ export const ProductStyled = styled.div`
         display: flex;
         flex-wrap: wrap;
         gap: 5px;
+        margin-bottom: 20px;
 
-        div {
+
+        .categories {
           width: fit-content;
           padding: 5px 10px;
           border-radius: 8px;
@@ -113,7 +119,8 @@ export const ProductStyled = styled.div`
         max-width: 600px;
 
         p {
-          margin-top: 20px;
+          width: 100%;
+          display: block;
           font-family: ${({ theme }) => theme.primaryFontFamily};
           font-size: 0.875rem;
           color: ${({ theme }) => theme.textColorDown};
@@ -125,7 +132,6 @@ export const ProductStyled = styled.div`
         height: 200px;
         border-radius: 10px;
         padding: 20px;
-
 
         display: flex;
         justify-content: space-between;

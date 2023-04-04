@@ -6,6 +6,7 @@ import {
 } from 'next';
 import { useRouter } from 'next/router';
 import { PharButton } from '@phar/core';
+import Skeleton from 'react-loading-skeleton';
 
 import { Navbar } from '@/components/navbar';
 
@@ -23,7 +24,9 @@ const Product: NextPage<ProductProps> = ({ data, categories }) => {
 
   const isLoading = router.isFallback;
 
-  const thumbStyles = { backgroundImage: `url(${data.thumb})` };
+  const thumbStyles = isLoading
+    ? {}
+    : { backgroundImage: `url(${data.thumb})` };
 
   return (
     <ProductStyled>
@@ -32,18 +35,38 @@ const Product: NextPage<ProductProps> = ({ data, categories }) => {
       <div className="wrapper">
         <div>
           <div>
-            <div className="thumb" style={thumbStyles} />
+            <div className="thumb" style={thumbStyles}>
+              {isLoading && <Skeleton height="100%" width="100%" />}
+            </div>
 
             <div className="description">
-              <h4>{data.title}</h4>
+              {isLoading ? (
+                <h4 className="loader">
+                  <Skeleton height={40} width="100%" />
+                </h4>
+              ) : (
+                <h4>{data.title}</h4>
+              )}
 
               <div className="categories">
-                {categories.map(category => (
-                  <div key={category._id}>{category.name}</div>
-                ))}
+                {isLoading
+                  ? Array.from({ length: 5 }).map(() => (
+                      <Skeleton key={Math.random()} width={60} height={20} />
+                    ))
+                  : categories.map(category => (
+                      <div className="category" key={category._id}>
+                        {category.name}
+                      </div>
+                    ))}
               </div>
 
-              <p>{data.description}</p>
+              {isLoading ? (
+                <div className="loader">
+                  <Skeleton width="100%" height={130} />
+                </div>
+              ) : (
+                <p>{data.description}</p>
+              )}
             </div>
           </div>
 
@@ -52,15 +75,23 @@ const Product: NextPage<ProductProps> = ({ data, categories }) => {
 
             <div className="buy_cart">
               <h3>
-                {data.price.toLocaleString('en', {
-                  currency: 'USD',
-                  style: 'currency',
-                })}
+                {isLoading ? (
+                  <Skeleton width={80} height={40} />
+                ) : (
+                  data.price.toLocaleString('en', {
+                    currency: 'USD',
+                    style: 'currency',
+                  })
+                )}
               </h3>
               <div>
-                <PharButton block bold={600}>
-                  Add to cart
-                </PharButton>
+                {isLoading ? (
+                  <Skeleton width="100%" height={40} />
+                ) : (
+                  <PharButton block bold={600}>
+                    Add to cart
+                  </PharButton>
+                )}
               </div>
             </div>
           </div>
