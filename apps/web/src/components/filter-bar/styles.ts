@@ -16,7 +16,7 @@ export const FilterBarStyled = styled.div`
       color: ${({ theme }) => theme.primaryColorUp};
     }
 
-    width: 250px;
+    width: 200px;
     white-space: nowrap;
     overflow: hidden;
 

@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import { langs } from '@phar/i18n';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 import { Auth } from '@/components/auth';
 import { AuthFormFields } from '@/components/auth/model';
@@ -23,6 +24,7 @@ const Signup: NextPage = () => {
   const router = useRouter();
 
   const { lang } = useSelector((state: AppState) => state);
+  const [isLoading, setIsLoading] = useState(false);
 
   const i18n = langs[lang];
 
@@ -32,6 +34,7 @@ const Signup: NextPage = () => {
 
     if (res) {
       showAlert(i18n.welcome, 'success');
+      setIsLoading(true);
 
       const { user, token } = res;
       const isAdmin = user.roles.includes('ADMIN');
@@ -41,11 +44,13 @@ const Signup: NextPage = () => {
       dispatch(setUserIsAdminAction(isAdmin));
       dispatch(setAuthTokenAction(token));
 
+      setIsLoading(false);
+
       router.push('/');
     }
   };
 
-  return <Auth type="signup" onAuth={e => onSignup(e)} />;
+  return <Auth isLoading={isLoading} type="signup" onAuth={e => onSignup(e)} />;
 };
 
 export default withAuth(Signup);

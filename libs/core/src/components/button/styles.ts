@@ -12,6 +12,9 @@ export const ButtonStyled = styled.button<ButtonProps>`
   transition: all 0.14s;
   font-weight: ${({ bold }) => bold || 400};
   letter-spacing: 0.03rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 2px solid transparent;
   outline: none;
   color: ${({ theme }) => theme.lightColorUp};
