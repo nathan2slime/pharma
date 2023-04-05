@@ -6,6 +6,8 @@ import { PharButton, PharInput } from '@phar/core';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { BarLoader } from 'react-spinners';
+import { themes } from '@phar/themes';
 
 import { AppState } from '@/store';
 
@@ -14,7 +16,7 @@ import { AuthStyled } from './styles';
 
 import pharm from '@/assets/pharm.svg';
 
-export const Auth = ({ type, onAuth }: AuthProps) => {
+export const Auth = ({ type, onAuth, isLoading }: AuthProps) => {
   const { lang } = useSelector((state: AppState) => state);
 
   const i18n = langs[lang];
@@ -115,7 +117,15 @@ export const Auth = ({ type, onAuth }: AuthProps) => {
           onClick={() => onSubmit()}
           aria-label={i18n[type]}
         >
-          {i18n[type]}
+          {isLoading ? (
+            <BarLoader
+              color={themes.dark.lightColorUp}
+              width={30}
+              height={30}
+            />
+          ) : (
+            i18n[type]
+          )}
         </PharButton>
 
         <Link href={type == 'login' ? '/auth/signup' : '/auth/login'}>

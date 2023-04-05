@@ -1,5 +1,4 @@
 import express, { json, Request, Response } from 'express';
-import { rateLimit } from 'express-rate-limit';
 import { config } from 'dotenv';
 import cors from 'cors';
 
@@ -20,15 +19,8 @@ const app = express();
 
 if (env != 'test') connectMongoDB();
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-});
-
 app.use(cors());
 app.use(json());
-
-if (env == 'production') app.use(limiter);
 
 app.use('/api', router);
 app.get('/', (_req: Request, res: Response) =>

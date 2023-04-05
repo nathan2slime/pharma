@@ -3754,6 +3754,7 @@ __metadata:
     react-modal: ^3.16.1
     react-modern-drawer: ^1.2.0
     react-redux: ^8.0.5
+    react-spinners: ^0.13.8
     redux-thunk: ^2.4.2
     styled-components: ^5.3.9
     styled-media-query: ^2.1.2
@@ -13553,6 +13554,16 @@ __metadata:
   version: 0.11.0
   resolution: "react-refresh@npm:0.11.0"
   checksum: 112178a05b1e0ffeaf5d9fb4e56b4410a34a73adeb04dbf13abdc50d9ac9df2ada83e81485156cca0b3fa296aa3612751b3d6cd13be4464642a43679b819cbc7
+  languageName: node
+  linkType: hard
+
+"react-spinners@npm:^0.13.8":
+  version: 0.13.8
+  resolution: "react-spinners@npm:0.13.8"
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: cb58f916bbf00c4f7fc33c1a75a8c0f91a98a42af26944340a0e29e4b3a97937a03f0292bc444eb5f5f0bea099344b580f9c04a81524246dadbf0571bdb57e62
   languageName: node
   linkType: hard
 

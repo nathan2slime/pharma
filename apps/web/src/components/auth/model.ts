@@ -7,4 +7,5 @@ export type AuthFormFields = {
 export type AuthProps = {
   type: 'login' | 'signup';
   onAuth: (data: AuthFormFields) => void;
+  isLoading?: boolean;
 };
