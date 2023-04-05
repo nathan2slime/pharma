@@ -63,7 +63,11 @@ const Cart: NextPage<CartProps> = () => {
     products.forEach(product => {
       if (!!filter.find(el => el.data._id == product._id)) return;
 
-      const count = products.filter(p => p._id == product._id).length;
+      const count = (user.data?.cart || []).filter(
+        p => p == product._id
+      ).length;
+
+      if (count == 0) return;
 
       filter.push({
         data: product,

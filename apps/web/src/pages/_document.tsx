@@ -21,6 +21,7 @@ export default class MyDocument extends Document {
           <>
             {initialProps.styles}
             {sheet.getStyleElement()}
+            <title>Pharm</title>
             <meta
               name="viewport"
               content="width=device-width, user-scalable=no"
@@ -32,6 +33,7 @@ export default class MyDocument extends Document {
               href="https://fonts.gstatic.com"
               crossOrigin="anonymous"
             />
+            <link rel="shortcut icon" href="./pharm.svg" type="image/x-icon" />
             <link
               href="https://fonts.googleapis.com/css2?family=Nunito&family=Ubuntu&display=swap"
               rel="stylesheet"

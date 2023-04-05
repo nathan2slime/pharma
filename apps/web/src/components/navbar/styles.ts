@@ -137,6 +137,10 @@ export const NavbarStyled = styled.header`
     .search_content_modal {
       width: 100%;
       padding: 20px;
+
+      .search {
+        max-width: 100%;
+      }
     }
   }
 
