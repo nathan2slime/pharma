@@ -5,7 +5,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "outDir": "dist/"
+    "outDir": "dist/",
+    "emitDecoratorMetadata": true
   },
   "include": ["./src/**/*.ts", "index.ts"]
 }

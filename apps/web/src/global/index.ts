@@ -22,12 +22,13 @@ export const GlobalStyle = createGlobalStyle`
   ${media.greaterThan('md')`
      &::-webkit-scrollbar {
       width: 4px;
+      height: 0px;
       border-radius: 5px;
       background: ${({ theme }) => theme.foregroundColorDown};
     }
 
     &::-webkit-scrollbar-thumb {
-      background: ${({ theme }) => theme.secondaryColorDown};
+      background: ${({ theme }) => theme.primaryColorDown};
     }
   `}
 `;

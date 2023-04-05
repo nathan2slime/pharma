@@ -7,7 +7,7 @@ export const AvatarStyled = styled.div`
   cursor: pointer;
   gap: 10px;
 
-  div {
+  div:first-child {
     width: 40px;
     height: 40px;
     background-size: cover;
@@ -22,11 +22,27 @@ export const AvatarStyled = styled.div`
     color: ${({ theme }) => theme.textColorDown};
     text-transform: lowercase;
     white-space: nowrap;
+    margin-bottom: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
 
     &:last-child {
       width: 100px;
+    }
+  }
+
+  button {
+    margin-left: 15px;
+    padding: 0px;
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    i {
+      font-size: 1.2rem;
+      color: ${({ theme }) => theme.lightColorUp};
     }
   }
 

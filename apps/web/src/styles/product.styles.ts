@@ -124,7 +124,7 @@ export const ProductStyled = styled.div`
 
     .buy_cart {
       width: 100%;
-      height: 200px;
+      height: 100%;
       border-radius: 10px;
       padding: 20px;
 

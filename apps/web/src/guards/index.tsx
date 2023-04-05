@@ -17,15 +17,17 @@ export const withAuth: Guard = Component => props => {
 
   if (pathname.includes('admin') && !roles.includes('ADMIN')) {
     push('/');
-  } else if (!user.isLogged && !isAuth) {
+  }
+  
+  if (!user.isLogged && !isAuth) {
     protecteds.forEach(route => route == pathname && push('/login'));
-  } else if (user.isLogged && isAuth) {
+  }
+  
+  if (user.isLogged && isAuth) {
     push('/404');
-  } else {
-    return <Component {...props.pageProps} />;
   }
 
-  return <div />;
+  return <Component {...props.pageProps} />;
 };
 
 export const withMe: Guard = Component => props => {

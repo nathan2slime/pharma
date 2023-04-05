@@ -26,6 +26,10 @@ export const NavbarStyled = styled.header`
     display: none;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .search {
     width: 100%;
     max-width: 600px;
@@ -63,6 +67,7 @@ export const NavbarStyled = styled.header`
       i {
         color: ${({ theme }) => theme.textColorDown};
         cursor: pointer;
+        text-decoration: none;
         font-size: 1.4rem;
         transition: all 0.15s;
 
@@ -104,12 +109,13 @@ export const NavbarStyled = styled.header`
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-        i {
+ 
+        .cart {
           color: ${({ theme }) => theme.textColorDown};
           cursor: pointer;
           font-size: 1.4rem;
           transition: all 0.15s;
+          text-decoration: none;
 
           &:hover {
             color: ${({ theme }) => theme.primaryColorUp};

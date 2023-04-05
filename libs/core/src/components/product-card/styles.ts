@@ -7,7 +7,7 @@ export const CardProductStyled = styled.div`
   background: ${({ theme }) => theme.foregroundColorUp};
   border-radius: 10px;
   cursor: pointer;
-  overflow: hidden;
+  position: relative;
   transition: all 0.15s;
 
   &.isLoading {
@@ -17,10 +17,11 @@ export const CardProductStyled = styled.div`
   > div:first-child {
     height: 200px;
     background-size: cover;
+    border-radius: 10px 10px 0px 0px;
     background-repeat: no-repeat;
   }
 
-  > div:last-child {
+  > div:last-child:not(.action) {
     padding: 10px 20px;
 
     display: flex;
@@ -48,6 +49,16 @@ export const CardProductStyled = styled.div`
     font-size: 0.875rem;
     font-family: ${({ theme }) => theme.secondaryFontFamily};
     color: ${({ theme }) => theme.primaryColorUp};
+  }
+
+  .action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    top: 10px;
+    right: -20px;
   }
 
   &:hover {

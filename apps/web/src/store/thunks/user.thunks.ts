@@ -42,3 +42,19 @@ export const addProductInCartUserThunk = (product: string) => {
     }
   };
 };
+
+export const removeProductFromCartUserThunk = (product: string) => {
+  return async (dispatch: Dispatch, getState: () => AppState) => {
+    const user = getState().user;
+
+    if (user.data && user.token) {
+      const data = await userServices.update(user.token, { ...user.data });
+
+      if (data) {
+        dispatch(setUserDataAction(data));
+      } else {
+        dispatch(addProductInCartUserAction(product));
+      }
+    }
+  };
+};

@@ -1,50 +1,88 @@
-import { prop, getModelForClass, pre, plugin } from '@typegoose/typegoose';
+import { PaginateMethod } from '@/types/paginate.types';
+import mongoose, { Model } from 'mongoose';
 import paginate from 'mongoose-paginate-v2';
 import shortid from 'shortid';
 
-import { PaginateMethod } from '@/types/paginate.types';
+export type Product = {
+  _id?: string;
+  title: string;
+  description: string;
+  thumb: string;
+  gallery: string[];
+  categories: string[];
+  price: number;
+  searchTitle?: string;
+  created_at?: Date;
+  deleted_at?: Date;
+  updated_at?: Date;
+  searchDescription?: string;
+};
 
-import { BaseModel } from './base.schemas';
-
-@pre<Product>('save', function () {
-  this.searchTitle = this.title.toLowerCase();
-  this.searchDescription = this.description.toLowerCase();
-})
-@plugin(paginate)
-export class Product extends BaseModel {
-  @prop({
+const ProductSchema = new mongoose.Schema({
+  _id: {
     type: String,
     default: () => shortid.generate().toUpperCase(),
-  })
-  _id?: string;
+  },
+  title: {
+    type: String,
+    required: true,
+    index: true,
+  },
+  description: {
+    type: String,
+    required: true,
+    index: true,
+  },
+  thumb: {
+    type: String,
+    required: true,
+  },
+  gallery: {
+    type: [String],
+    required: true,
+    default: [],
+  },
+  categories: {
+    type: [String],
+    required: true,
+    default: [],
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  searchTitle: {
+    type: String,
+    index: true,
+  },
+  searchDescription: {
+    type: String,
+    index: true,
+  },
+  created_at: {
+    type: Date,
+    default: Date.now,
+  },
+  deleted_at: {
+    type: Date,
+  },
+  updated_at: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
-  @prop({ type: String, required: true, index: true })
-  title!: string;
+ProductSchema.pre('save', async function () {
+  this.searchTitle = this.title.toLowerCase();
+  this.searchDescription = this.description.toLowerCase();
+});
 
-  @prop({ type: String, required: true, index: true })
-  description!: string;
+ProductSchema.plugin(paginate);
 
-  @prop({ type: String, required: true })
-  thumb!: string;
+export type ProductType = {
+  paginate: PaginateMethod<Product>;
+} & Model<Product>;
 
-  @prop({ type: [String], required: true, default: [] })
-  gallery!: string[];
-
-  @prop({ type: [String], required: true, default: [] })
-  categories!: String[];
-
-  @prop({ type: Number, required: true })
-  price!: number;
-
-  @prop({ type: String, index: true })
-  searchTitle?: string;
-
-  @prop({ type: String, index: true })
-  searchDescription?: string;
-
-  static paginate: PaginateMethod<Product>;
-}
-
-const ProductModel = getModelForClass(Product);
+const ProductModel = mongoose.model('Product', ProductSchema) as ProductType;
 
 export default ProductModel;

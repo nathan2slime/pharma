@@ -82,8 +82,6 @@ const Index = ({ search, page, ...props }: IndexProps) => {
     setIsLoading(false);
   };
 
-  console.log('rendizrio');
-
   useEffect(() => {
     const newCategory = props.category;
 
