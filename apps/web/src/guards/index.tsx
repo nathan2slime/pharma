@@ -18,13 +18,13 @@ export const withAuth: Guard = Component => props => {
   if (pathname.includes('admin') && !roles.includes('ADMIN')) {
     push('/');
   }
-  
+
   if (!user.isLogged && !isAuth) {
     protecteds.forEach(route => route == pathname && push('/login'));
   }
-  
+
   if (user.isLogged && isAuth) {
-    push('/404');
+    push('/');
   }
 
   return <Component {...props.pageProps} />;
