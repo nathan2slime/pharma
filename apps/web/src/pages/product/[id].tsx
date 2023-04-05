@@ -10,8 +10,6 @@ import Skeleton from 'react-loading-skeleton';
 import { langs } from '@phar/i18n';
 import { useSelector } from 'react-redux';
 
-import { Navbar } from '@/components/navbar';
-
 import { ProductStyled } from '@/styles/product.styles';
 import { Category, ProductType } from '@/types/product.types';
 import { ProductServices } from '@/services/product.services';
@@ -20,7 +18,7 @@ import {
   addProductInCartUserAction,
   saveProductInUserAction,
 } from '@/store/actions/user.actions';
-import { addProductInCartUserThunk } from '@/store/thunks/user.thunks';
+import { removeProductFromCartUserThunk } from '@/store/thunks/user.thunks';
 import { showAlert } from '@/utils/funcs';
 
 export type ProductProps = {
@@ -42,12 +40,16 @@ const Product: NextPage<ProductProps> = ({ data, categories }) => {
 
   const onSaveProduct = () => {
     dispatch(saveProductInUserAction(data._id));
-    dispatch(addProductInCartUserThunk(data._id));
+    dispatch(removeProductFromCartUserThunk(data._id));
   };
 
   const addProductInCart = () => {
+    if (!user.isLogged) {
+      return router.push('/auth/login');
+    }
+
     dispatch(addProductInCartUserAction(data._id));
-    dispatch(addProductInCartUserThunk(data._id));
+    dispatch(removeProductFromCartUserThunk(data._id));
 
     showAlert(i18n.addedInCart, 'info');
   };
@@ -92,12 +94,6 @@ const Product: NextPage<ProductProps> = ({ data, categories }) => {
         </div>
 
         <div>
-          {user.data?.saved.includes(data._id) ? (
-            <i className="ri-bookmark-fill" onClick={() => onSaveProduct()} />
-          ) : (
-            <i className="ri-bookmark-line" onClick={() => onSaveProduct()} />
-          )}
-
           <div className="buy_cart">
             <h3>
               {isLoading ? (

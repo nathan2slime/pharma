@@ -1,28 +1,52 @@
-import { prop, getModelForClass, pre } from '@typegoose/typegoose';
+import mongoose, { Schema } from 'mongoose';
 import shortid from 'shortid';
 
-import { BaseModel } from './base.schemas';
+export type Category = {
+  _id?: string;
+  name: string;
+  color: string;
+  searchName?: string;
+  created_at?: Date;
+  deleted_at?: Date;
+  updated_at?: Date;
+};
 
-@pre<Category>('save', function () {
-  this.searchName = this.name.toLowerCase();
-})
-export class Category extends BaseModel {
-  @prop({
+const CategorySchema = new Schema({
+  _id: {
     type: String,
     default: () => shortid.generate().toUpperCase(),
-  })
-  _id?: string;
+  },
+  name: {
+    type: String,
+    required: true,
+    index: true,
+  },
+  color: {
+    type: String,
+    required: true,
+    default: 'blue',
+  },
+  searchName: {
+    type: String,
+    index: true,
+  },
+  created_at: {
+    type: Date,
+    default: Date.now,
+  },
+  deleted_at: {
+    type: Date,
+  },
+  updated_at: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
-  @prop({ type: String, required: true, index: true })
-  name!: string;
+CategorySchema.pre<Category>('save', function () {
+  this.searchName = this.name.toLowerCase();
+});
 
-  @prop({ type: String, required: true, default: 'blue' })
-  color!: string;
-
-  @prop({ type: String, index: true })
-  searchName?: string;
-}
-
-const CategoryModel = getModelForClass(Category);
+const CategoryModel = mongoose.model<Category>('Category', CategorySchema);
 
 export default CategoryModel;

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PharAvatar, PharBadge, PharButton, PharModal } from '@phar/core';
 import { langs } from '@phar/i18n';
 import { useRouter } from 'next/router';
@@ -10,10 +10,18 @@ import { useEffect, useState } from 'react';
 import { Search } from '../search';
 import { AppState } from '@/store';
 import { NavbarStyled } from './styles';
+import {
+  setAuthTokenAction,
+  setUserDataAction,
+  setUserIsLoggedAction,
+} from '@/store/actions/user.actions';
 
 import pharm from '../../assets/phar.svg';
 
 export const Navbar = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const { pathname } = useRouter();
   const [openModal, setOpenModal] = useState(false);
   const [openBottomSheet, setOpenBottomSheet] = useState(false);
@@ -30,22 +38,31 @@ export const Navbar = () => {
     if (openModal) setOpenModal(false);
   }, [pathname]);
 
+  const onLogout = () => {
+    dispatch(setUserDataAction(null));
+    dispatch(setUserIsLoggedAction(false));
+    dispatch(setAuthTokenAction(null));
+    router.push('/');
+  };
+
   const search = <Search />;
 
   const auth = (
     <>
       <div>
-        <PharBadge count={data?.cart.length || 0}>
-          <i className="ri-shopping-cart-fill" />
-        </PharBadge>
-
-        <PharBadge count={data?.saved.length || 0}>
-          <i className="ri-bookmark-line" />
-        </PharBadge>
+        <Link href="/cart">
+          <PharBadge count={data?.cart.length || 0}>
+            <i className="cart ri-shopping-cart-fill" />
+          </PharBadge>
+        </Link>
       </div>
 
       {isLogged || isLoading ? (
-        <PharAvatar isLoading={isLoading} username={data?.username} />
+        <PharAvatar
+          isLoading={isLoading}
+          onLogout={onLogout}
+          username={data?.username}
+        />
       ) : (
         <div className="auth_action">
           <Link href="/auth/login">

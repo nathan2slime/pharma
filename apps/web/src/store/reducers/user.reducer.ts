@@ -9,6 +9,7 @@ import {
   setUserIsLoadingAction,
   saveProductInUserAction,
   addProductInCartUserAction,
+  removeProductFromCartUserAction,
 } from '../actions/user.actions';
 import { setLocalStorageItem } from '@/utils/funcs';
 
@@ -90,6 +91,30 @@ export default createReducer<UserState>(INITIAL, builder => {
             ...state,
             data: { ...user, cart: cart },
           };
+        }
+
+        return state;
+      }
+    )
+    .addCase<string, AnyAction>(
+      removeProductFromCartUserAction.type,
+      (state, action) => {
+        const user = state.data;
+
+        if (user) {
+          const cart = [...user.cart];
+
+          const position = cart.indexOf(action.payload);
+          if (position == -1) {
+            return state;
+          } else {
+            cart.splice(position, 1);
+
+            return {
+              ...state,
+              data: { ...user, cart: cart },
+            };
+          }
         }
 
         return state;

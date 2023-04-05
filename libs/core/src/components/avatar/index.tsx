@@ -3,8 +3,9 @@ import classNames from 'classnames';
 
 import { AvatarProps } from './model';
 import { AvatarStyled } from './styles';
+import { PharButton } from '../button';
 
-export const PharAvatar = ({ username, avatar, isLoading }: AvatarProps) => {
+export const PharAvatar = ({ username, avatar,onLogout, isLoading }: AvatarProps) => {
   const styles = avatar
     ? {
         backgroundImage: `url(${avatar})`,
@@ -22,7 +23,13 @@ export const PharAvatar = ({ username, avatar, isLoading }: AvatarProps) => {
       {isLoading ? (
         <Skeleton width="140px" height="25px" />
       ) : (
-        <span>{username}</span>
+        <div>
+          <span>{username}</span>
+
+          <PharButton onClick={onLogout}>
+            <i className="ri-logout-circle-fill" />
+          </PharButton>
+        </div>
       )}
     </AvatarStyled>
   );

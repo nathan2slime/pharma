@@ -14,7 +14,11 @@ export class AuthControllers {
       const authServices = new AuthServices(
         req.headers['accept-language'] as AppI18nLang
       );
-      const signup = await authServices.signup({ email, password, username });
+      const signup = await authServices.signup({
+        email,
+        password,
+        username,
+      });
 
       return res.json(signup);
     } catch (error) {

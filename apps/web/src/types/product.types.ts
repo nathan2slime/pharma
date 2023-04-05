@@ -23,6 +23,8 @@ export type Pagination<T> = {
   nextPage: number | null;
 };
 
+export type CartProduct = { data: ProductType; count: number };
+
 export type Category = {
   color: string;
   created_at: string;

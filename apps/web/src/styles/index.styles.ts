@@ -32,10 +32,14 @@ export const IndexStyled = styled.div`
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       place-items: flex-start;
-
-      ${media.lessThan('sm')`
-        place-items: center;
-      `}
     }
+
+    ${media.lessThan('sm')`
+        > div {
+          place-items: center;
+        } 
+         
+        padding: 100px 20px 20px;
+      `}
   }
 `;

@@ -74,4 +74,15 @@ export class ProductServices {
 
     return data;
   }
+
+  async fetchProducts(products: string[]) {
+    try {
+      const data = await Promise.all(
+        products.map(async id => await this.getById(id))
+      );
+      return data;
+    } catch (error) {
+      return;
+    }
+  }
 }
