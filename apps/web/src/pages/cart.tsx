@@ -35,11 +35,11 @@ const Cart: NextPage<CartProps> = () => {
 
   useEffect(() => {
     if (!user.isLogged && !user.isLoading) {
-      router.push('/');
+      router.push('/auth/login');
     }
 
     fetchProducts();
-  }, [user.data]);
+  }, [user.isLogged]);
 
   const fetchProducts = async () => {
     const userData = user.data;
